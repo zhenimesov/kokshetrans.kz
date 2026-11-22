@@ -3,14 +3,76 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Kokshe Trans Logistics — Logistics and Freight Forwarding in Kazakhstan" lang="en">
-	<section class="hero">
-		<div class="container">
-			<h1>Reliable Logistics & Freight Services in Kazakhstan and Worldwide</h1>
-			<p>Comprehensive transport and logistics solutions: rail freight, trucking, warehousing, and customs clearance.</p>
-			<div class="hero-actions">
-				<a href="/kokshetrans.kz/en/services" class="btn btn-primary">Our Services</a>
-				<a href="/kokshetrans.kz/en/contacts" class="btn btn-secondary">Contact Us</a>
-			</div>
-		</div>
-	</section>
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Reliable Logistics & Freight Services in Kazakhstan and Worldwide</h1>
+            <p>Comprehensive transport and logistics solutions: rail freight, trucking, warehousing, and customs clearance.</p>
+            <div class="hero-buttons">
+                <a href="/kokshetrans.kz/en/services" class="btn btn-primary">Our Services</a>
+                <a href="/kokshetrans.kz/en/contacts" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+    </section>
 </Layout>
+
+<style>
+    .hero {
+        background: linear-gradient(rgba(11, 37, 69, 0.85), rgba(19, 64, 116, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        color: white;
+        padding: 8rem 0;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        line-height: 1.6;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.875rem 2rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn-primary {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #d17534;
+    }
+
+    .btn-outline {
+        border: 2px solid white;
+        color: white;
+    }
+
+    .btn-outline:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+</style>
