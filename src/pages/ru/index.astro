@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Кокшетранс — Транспортно-логистическая компания">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Надежная логистика и грузоперевозки</h1>
+            <p>Комплексные транспортно-логистические решения для вашего бизнеса по Казахстану, СНГ и всему миру. Ж/д перевозки, автотранспорт и складская логистика.</p>
+            <div class="hero-buttons">
+                <a href="/ru/services" class="btn btn-primary">Наши услуги</a>
+                <a href="/ru/contacts" class="btn btn-outline">Рассчитать стоимость</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Опыт и надежность</h3>
+                    <p>Многолетний опыт работы в сфере международных и внутренних грузоперевозок.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>География перевозок</h3>
+                    <p>Широкая сеть маршрутов по Казахстану, странам СНГ, Европы и Азии.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Безопасность грузов</h3>
+                    <p>Полный контроль на всех этапах транспортировки и страхование.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <h2 class="section-title">Основные направления</h2>
+            <div class="services-grid">
+                <div class="service-box">
+                    <h3>Ж/Д перевозки</h3>
+                    <p>Перевозка грузов вагонным парком и контейнерами по оптимальным тарифам.</p>
+                    <a href="/ru/services" class="link">Подробнее &rarr;</a>
+                </div>
+                <div class="service-box">
+                    <h3>Автоперевозки</h3>
+                    <p>Доставка сборных и генеральных грузов автомобильным транспортом.</p>
+                    <a href="/ru/services" class="link">Подробнее &rarr;</a>
+                </div>
+                <div class="service-box">
+                    <h3>Складская логистика</h3>
+                    <p>Услуги ответственного хранения, обработки и консолидации грузов.</p>
+                    <a href="/ru/services" class="link">Подробнее &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    /* Hero Styles */
+    .hero {
+        background: linear-gradient(rgba(11, 37, 69, 0.85), rgba(19, 64, 116, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        color: white;
+        padding: 8rem 0;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        line-height: 1.6;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.875rem 2rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn-primary {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #d17534;
+    }
+
+    .btn-outline {
+        border: 2px solid white;
+        color: white;
+    }
+
+    .btn-outline:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Section Common */
+    section {
+        padding: 5rem 0;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.25rem;
+        margin-bottom: 3rem;
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+
+    /* Features */
+    .features {
+        background-color: var(--bg-light);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .feature-card {
+        background: white;
+        padding: 2.5rem 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        border-top: 4px solid var(--secondary-color);
+    }
+
+    .feature-card h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+        font-size: 1.25rem;
+    }
+
+    .feature-card p {
+        color: #666;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+
+    /* Services Overview */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .service-box {
+        border: 1px solid #e1e4e8;
+        padding: 2.5rem 2rem;
+        border-radius: 8px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        background: white;
+    }
+
+    .service-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .service-box h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+    }
+
+    .service-box p {
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+
+    .link {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .link:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.25rem;
+        }
+        .hero-buttons {
+            flex-direction: column;
+        }
+    }
+</style>

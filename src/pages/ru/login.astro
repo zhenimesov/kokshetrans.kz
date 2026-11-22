@@ -1,0 +1,222 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Вход для администратора — Кокшетранс">
+    <div class="login-page">
+        <div class="container">
+            <div class="login-card">
+                <h1>Вход в систему</h1>
+                <p>Панель управления публикациями и новостями</p>
+
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Логин</label>
+                        <input type="text" id="username" required placeholder="Введите логин">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" required placeholder="Введите пароль">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                    <div id="errorMsg" class="error-msg" style="display: none;">Неверный логин или пароль</div>
+                </form>
+
+                <div id="adminPanel" class="admin-panel" style="display: none;">
+                    <div class="success-banner">Вы успешно вошли как администратор!</div>
+                    <h2>Добавить новую публикацию</h2>
+                    <form id="postForm" class="post-form">
+                        <div class="form-group">
+                            <label for="postTitle">Заголовок публикации</label>
+                            <input type="text" id="postTitle" required placeholder="Например: Открытие нового филиала">
+                        </div>
+                        <div class="form-group">
+                            <label for="postContent">Текст публикации</label>
+                            <textarea id="postContent" rows="6" required placeholder="Введите текст новости или статьи..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Опубликовать</button>
+                    </form>
+                    <div id="successPost" class="success-msg" style="display: none;">Публикация успешно добавлена!</div>
+                    <button id="logoutBtn" class="btn btn-outline-dark btn-block" style="margin-top: 1rem;">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const loginForm = document.getElementById('loginForm');
+    const adminPanel = document.getElementById('adminPanel');
+    const errorMsg = document.getElementById('errorMsg');
+    const postForm = document.getElementById('postForm');
+    const successPost = document.getElementById('successPost');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Проверка сохраненной сессии
+    if (localStorage.getItem('isAdmin') === 'true') {
+        if (loginForm) loginForm.style.display = 'none';
+        if (adminPanel) adminPanel.style.display = 'block';
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = (document.getElementById('username') as HTMLInputElement).value;
+            const pass = (document.getElementById('password') as HTMLInputElement).value;
+
+            // Простые демо-данные (в реальном приложении заменяются на бэкенд)
+            // Используем переменную окружения для пароля (установить в .env файле)
+            // Для демо оставляем простую проверку, но в продакшене обязательно используйте env переменные
+            const DEMO_PASS = import.meta.env.DEMO_PASS || 'demo123';
+
+            if (user === 'admin' && pass === DEMO_PASS) {
+                localStorage.setItem('isAdmin', 'true');
+                loginForm.style.display = 'none';
+                if (adminPanel) adminPanel.style.display = 'block';
+                errorMsg.style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+    }
+
+    if (postForm) {
+        postForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = (document.getElementById('postTitle') as HTMLInputElement).value;
+            const content = (document.getElementById('postContent') as HTMLTextAreaElement).value;
+
+            // Имитация сохранения публикации
+            const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
+            posts.unshift({ title, content, date: new Date().toLocaleDateString() });
+            localStorage.setItem('newsPosts', JSON.stringify(posts));
+
+            successPost.style.display = 'block';
+            postForm.reset();
+            setTimeout(() => {
+                successPost.style.display = 'none';
+            }, 3000);
+        });
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('isAdmin');
+            if (adminPanel) adminPanel.style.display = 'none';
+            if (loginForm) loginForm.style.display = 'block';
+        });
+    }
+</script>
+
+<style>
+    .login-page {
+        padding: 5rem 0;
+        background-color: var(--bg-light);
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .login-card {
+        max-width: 500px;
+        margin: 0 auto;
+        background: white;
+        padding: 3rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .login-card h1 {
+        color: var(--primary-color);
+        margin-top: 0;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .login-card > p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.875rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+
+    .btn-block {
+        width: 100%;
+        padding: 0.875rem;
+        border: none;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #d17534;
+    }
+
+    .btn-outline-dark {
+        background: transparent;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    .btn-outline-dark:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .error-msg {
+        color: #d9534f;
+        margin-top: 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .success-msg {
+        color: #5cb85c;
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .success-banner {
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 1rem;
+        border-radius: 4px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+
+    .admin-panel h2 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+</style>

@@ -1,0 +1,183 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Контакты — Кокшетранс">
+    <div class="page-header">
+        <div class="container">
+            <h1>Свяжитесь с нами</h1>
+            <p>Мы всегда открыты для сотрудничества и готовы ответить на ваши вопросы</p>
+        </div>
+    </div>
+
+    <section class="contacts-section">
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contact-info">
+                    <h2>Наши контакты</h2>
+                    <p class="subtitle">Свяжитесь с нашими специалистами любым удобным способом.</p>
+
+                    <div class="info-item">
+                        <h3>Адрес</h3>
+                        <p>Республика Казахстан, г. Кокшетау</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>Телефоны</h3>
+                        <p><a href="tel:+77162000000">+7 (7162) 00-00-00</a></p>
+                        <p><a href="tel:+77010000000">+7 (701) 000-00-00</a></p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@kokshetrans.kz">info@kokshetrans.kz</a></p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>Режим работы</h3>
+                        <p>Пн - Пт: 09:00 – 18:00<br>Сб - Вс: Выходной</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <h2>Оставить заявку</h2>
+                    <p class="subtitle">Заполните форму, и мы свяжемся с вами в ближайшее время.</p>
+
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Номер телефона</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение или детали груза</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Опишите ваш запрос..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+    }
+
+    .page-header h1 {
+        margin: 0 0 1rem 0;
+        font-size: 2.5rem;
+    }
+
+    .page-header p {
+        margin: 0;
+        opacity: 0.8;
+        font-size: 1.1rem;
+    }
+
+    .contacts-section {
+        padding: 5rem 0;
+    }
+
+    .contacts-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+
+    .contact-info h2, .contact-form-wrapper h2 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        color: #666;
+        margin-bottom: 2rem;
+        font-size: 1.05rem;
+    }
+
+    .info-item {
+        margin-bottom: 2rem;
+    }
+
+    .info-item h3 {
+        color: var(--secondary-color);
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-item p, .info-item a {
+        color: #444;
+        margin: 0;
+        font-size: 1.05rem;
+        text-decoration: none;
+    }
+
+    .info-item a:hover {
+        color: var(--accent-color);
+        text-decoration: underline;
+    }
+
+    .contact-form-wrapper {
+        background: var(--bg-light);
+        padding: 3rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.875rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        background: white;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 3px rgba(19, 64, 116, 0.1);
+    }
+
+    .btn-block {
+        width: 100%;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .contacts-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        .contact-form-wrapper {
+            padding: 1.5rem;
+        }
+    }
+</style>
