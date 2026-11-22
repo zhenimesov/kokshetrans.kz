@@ -11,16 +11,17 @@ const { title, lang = 'ru' } = Astro.props;
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Кокшетранс — Логистическая компания в Казахстане" />
+		<meta name="description" content="Кокше Транс Логистик — логистическая компания в Казахстане" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/kokshetrans.kz/logo.svg" />
 		<title>{title}</title>
 	</head>
 	<body>
 		<header class="site-header">
             <div class="container header-container">
                 <a href={`/kokshetrans.kz/${lang}`} class="logo">
-                    <span class="logo-text">КОКШЕ</span>
+                    <img src="/kokshetrans.kz/logo.svg" alt="Кокше Транс Логистик" class="logo-img" />
+                    <span class="logo-text">{lang === 'en' ? 'Kokshe Trans Logistics' : 'Кокше Транс Логистик'}</span>
                 </a>
                 <nav class="main-nav" id="mainNav">
                     <a href={`/kokshetrans.kz/${lang}`}>{lang === 'en' ? 'Home' : 'Главная'}</a>
@@ -45,7 +46,7 @@ const { title, lang = 'ru' } = Astro.props;
 		<footer class="site-footer">
             <div class="container footer-container">
                 <div class="footer-col">
-                    <h3>{lang === 'en' ? 'Kokshetrans' : 'КОКШЕТРАНС'}</h3>
+                    <h3>{lang === 'en' ? 'Kokshe Trans Logistics' : 'Кокше Транс Логистик'}</h3>
                     <p>{lang === 'en' ? 'Reliable transport and logistics solutions across Kazakhstan, CIS and worldwide.' : 'Надежные транспортно-логистические решения по Казахстану, СНГ и миру.'}</p>
                 </div>
                 <div class="footer-col">
@@ -65,7 +66,7 @@ const { title, lang = 'ru' } = Astro.props;
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ТОО «Кокшетранс». Все права защищены.</p>
+                <p>&copy; 2026 ТОО «Кокше Транс Логистик». Все права защищены.</p>
             </div>
         </footer>
 
@@ -133,12 +134,24 @@ const { title, lang = 'ru' } = Astro.props;
         flex-wrap: wrap;
     }
 
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        text-decoration: none;
+    }
+
     .logo-text {
         font-size: 1.5rem;
         font-weight: 800;
         color: var(--primary-color);
         letter-spacing: 1px;
         flex-shrink: 0;
+    }
+
+    .logo-img {
+        height: 48px;
+        width: auto;
     }
 
     .main-nav {
@@ -311,7 +324,10 @@ const { title, lang = 'ru' } = Astro.props;
 
     @media (max-width: 480px) {
         .logo-text {
-            font-size: 1.2rem;
+            font-size: 1rem;
+        }
+        .logo-img {
+            height: 36px;
         }
         .container {
             padding: 0 1rem;
