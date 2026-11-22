@@ -1,21 +1,90 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Publications from '../../components/Publications.astro';
 ---
 
 <Layout title="Kokshe Trans Logistics — Logistics and Freight Forwarding in Kazakhstan" lang="en">
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
             <h1>Reliable Logistics & Freight Services in Kazakhstan and Worldwide</h1>
-            <p>Comprehensive transport and logistics solutions: rail freight, trucking, warehousing, and customs clearance. We ensure safe and efficient delivery of your cargo with competitive rates.</p>
+            <p>Comprehensive transport and logistics solutions: rail freight, trucking, container shipping, and customs clearance. We ensure safe and efficient delivery of your cargo with competitive rates.</p>
             <div class="hero-buttons">
-                <a href="/kokshetrans.kz/en/services" class="btn btn-primary">Our Services</a>
-                <a href="/kokshetrans.kz/en/contacts" class="btn btn-outline">Contact Us</a>
+                <a href="/kokshetrans.kz/en/contacts" class="btn btn-primary">Request a Quote</a>
+                <a href="/kokshetrans.kz/en/services" class="btn btn-outline">Our Services</a>
             </div>
         </div>
     </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <h3>10+</h3>
+                <p>Years of Experience</p>
+            </div>
+            <div class="stat-card">
+                <h3>5000+</h3>
+                <p>Delivered Shipments</p>
+            </div>
+            <div class="stat-card">
+                <h3>100%</h3>
+                <p>Reliability</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <h2 class="section-title">Key Services</h2>
+            <div class="services-grid">
+                <div class="service-box">
+                    <h3>Rail Freight</h3>
+                    <p>Transportation of cargo by rail wagons and containers at optimal rates.</p>
+                    <a href="/kokshetrans.kz/en/services" class="link">Learn more &rarr;</a>
+                </div>
+                <div class="service-box">
+                    <h3>Trucking</h3>
+                    <p>Delivery of LTL and FTL cargo by road transport.</p>
+                    <a href="/kokshetrans.kz/en/services" class="link">Learn more &rarr;</a>
+                </div>
+                <div class="service-box">
+                    <h3>Container Shipping</h3>
+                    <p>Shipping of 20- and 40-foot containers across Kazakhstan, China, Russia, Turkey, and Uzbekistan.</p>
+                    <a href="/kokshetrans.kz/en/services" class="link">Learn more &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Experience & Reliability</h3>
+                    <p>Years of experience in international and domestic freight forwarding.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Wide Geography</h3>
+                    <p>Extensive route network across Kazakhstan, CIS, Europe, and Asia.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Cargo Safety</h3>
+                    <p>Full control at all stages of transportation and insurance coverage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <Publications lang="en" />
 </Layout>
 
 <style>
+    /* Hero Styles */
     .hero {
         background: linear-gradient(rgba(11, 37, 69, 0.85), rgba(19, 64, 116, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
         color: white;
@@ -52,7 +121,7 @@ import Layout from '../../layouts/Layout.astro';
     .btn {
         display: inline-block;
         padding: 0.875rem 2rem;
-        border-radius: 4px;
+        border-radius: 8px;
         text-decoration: none;
         font-weight: 600;
         transition: background-color 0.2s, transform 0.2s;
@@ -76,12 +145,132 @@ import Layout from '../../layouts/Layout.astro';
         background-color: rgba(255, 255, 255, 0.1);
     }
 
+    /* Stats */
+    .stats {
+        background-color: var(--white);
+        padding: 4rem 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .stat-card {
+        background: var(--bg-light);
+        padding: 2rem;
+        border-radius: 8px;
+    }
+
+    .stat-card h3 {
+        color: var(--primary-color);
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 800;
+    }
+
+    .stat-card p {
+        color: #666;
+        margin: 0.5rem 0 0 0;
+        font-weight: 500;
+    }
+
+    /* Section Common */
+    section {
+        padding: 5rem 0;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.25rem;
+        margin-bottom: 3rem;
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+
+    /* Services Overview */
+    .services-overview {
+        background-color: var(--bg-light);
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .service-box {
+        border: 1px solid #e1e4e8;
+        padding: 2.5rem 2rem;
+        border-radius: 8px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        background: white;
+    }
+
+    .service-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .service-box h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+    }
+
+    .service-box p {
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+
+    .link {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .link:hover {
+        text-decoration: underline;
+    }
+
+    /* Features */
+    .features {
+        background-color: var(--white);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .feature-card {
+        background: var(--bg-light);
+        padding: 2.5rem 2rem;
+        border-radius: 8px;
+        border-top: 4px solid var(--secondary-color);
+    }
+
+    .feature-card h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+        font-size: 1.25rem;
+    }
+
+    .feature-card p {
+        color: #666;
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+
     @media (max-width: 768px) {
         .hero h1 {
-            font-size: 2rem;
+            font-size: 2.25rem;
         }
-        .hero p {
-            font-size: 1.1rem;
+        .hero-buttons {
+            flex-direction: column;
         }
     }
 </style>

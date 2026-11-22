@@ -34,9 +34,14 @@ import Layout from '../../layouts/Layout.astro';
                             <label for="postContent">Publication Text</label>
                             <textarea id="postContent" rows="6" required placeholder="Enter news or article text..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Publish</button>
+                        <input type="hidden" id="editIndex" value="-1">
+                        <button type="submit" class="btn btn-primary btn-block" id="submitPostBtn">Publish</button>
                     </form>
                     <div id="successPost" class="success-msg" style="display: none;">Publication successfully added!</div>
+                    <div id="errorPost" class="error-msg" style="display: none;">An error occurred while saving the publication.</div>
+
+                    <h2 style="margin-top: 3rem;">All publications</h2>
+                    <div id="publicationsList" class="publications-list"></div>
                     <button id="logoutBtn" class="btn btn-outline-dark btn-block" style="margin-top: 1rem;">Log out</button>
                 </div>
             </div>
@@ -76,18 +81,85 @@ import Layout from '../../layouts/Layout.astro';
         });
     }
 
+    let editIndex = -1;
+
+    function renderPublications() {
+        const list = document.getElementById('publicationsList');
+        if (!list) return;
+        const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
+        if (posts.length === 0) {
+            list.innerHTML = '<p class="empty-posts">No publications yet.</p>';
+            return;
+        }
+        let html = '<div class="posts-list">';
+        posts.forEach((post, index) => {
+            html += `
+                <div class="post-item">
+                    <div class="post-content">
+                        <strong>${escapeHtml(post.title)}</strong>
+                        <div class="post-meta">${escapeHtml(post.date)}</div>
+                        <div class="post-text">${escapeHtml(post.content)}</div>
+                    </div>
+                    <div class="post-actions">
+                        <button type="button" class="btn btn-primary btn-sm edit-btn" data-index="${index}">Edit</button>
+                        <button type="button" class="btn btn-outline-dark btn-sm delete-btn" data-index="${index}">Delete</button>
+                    </div>
+                </div>
+            `;
+        });
+        html += '</div>';
+        list.innerHTML = html;
+
+        list.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(e.target.dataset.index);
+                const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
+                const post = posts[idx];
+                document.getElementById('postTitle').value = post.title;
+                document.getElementById('postContent').value = post.content;
+                document.getElementById('editIndex').value = idx;
+                document.getElementById('submitPostBtn').textContent = 'Update publication';
+                document.getElementById('submitPostBtn').classList.add('btn-update');
+                editIndex = idx;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        list.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(e.target.dataset.index);
+                if (!confirm('Delete this publication?')) return;
+                const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
+                posts.splice(idx, 1);
+                localStorage.setItem('newsPosts', JSON.stringify(posts));
+                renderPublications();
+            });
+        });
+    }
+
     if (postForm) {
         postForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const title = document.getElementById('postTitle').value;
             const content = document.getElementById('postContent').value;
+            const idx = parseInt(document.getElementById('editIndex').value || '-1');
 
             const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
-            posts.unshift({ title, content, date: new Date().toLocaleDateString() });
+            if (idx >= 0 && idx < posts.length) {
+                posts[idx] = { title, content, date: new Date().toLocaleDateString() };
+            } else {
+                posts.unshift({ title, content, date: new Date().toLocaleDateString() });
+            }
             localStorage.setItem('newsPosts', JSON.stringify(posts));
 
             successPost.style.display = 'block';
+            errorPost.style.display = 'none';
             postForm.reset();
+            document.getElementById('editIndex').value = '-1';
+            document.getElementById('submitPostBtn').textContent = 'Publish';
+            document.getElementById('submitPostBtn').classList.remove('btn-update');
+            editIndex = -1;
+            renderPublications();
             setTimeout(() => {
                 successPost.style.display = 'none';
             }, 3000);
@@ -100,6 +172,18 @@ import Layout from '../../layouts/Layout.astro';
             if (adminPanel) adminPanel.style.display = 'none';
             if (loginForm) loginForm.style.display = 'block';
         });
+    }
+
+    function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Initial render if admin panel is visible
+    if (adminPanel && adminPanel.style.display !== 'none') {
+        renderPublications();
     }
 </script>
 
