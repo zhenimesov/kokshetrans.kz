@@ -1,0 +1,345 @@
+---
+interface Props {
+  lang?: 'ru' | 'en';
+}
+
+const { lang = 'ru' } = Astro.props;
+
+const texts = {
+  ru: {
+    title: 'Оставить заявку',
+    subtitle: 'Заполните форму, и мы свяжемся с вами в течение 15 минут.',
+    name: 'Ваше имя',
+    namePlaceholder: 'Иван Иванов',
+    phone: 'Телефон',
+    phonePlaceholder: '+7 (___) ___-__-__',
+    cargo: 'Детали груза',
+    cargoPlaceholder: 'Тип груза, вес, маршрут, сроки...',
+    submit: 'Отправить заявку',
+    sending: 'Отправка...',
+    success: 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.',
+    error: 'Ошибка отправки. Попробуйте еще раз или позвоните нам напрямую.',
+    required: 'Обязательное поле'
+  },
+  en: {
+    title: 'Request a Quote',
+    subtitle: 'Fill out the form and we will contact you within 15 minutes.',
+    name: 'Your Name',
+    namePlaceholder: 'John Doe',
+    phone: 'Phone',
+    phonePlaceholder: '+7 (___) ___-__-__',
+    cargo: 'Cargo Details',
+    cargoPlaceholder: 'Cargo type, weight, route, timeline...',
+    submit: 'Submit Request',
+    sending: 'Sending...',
+    success: 'Request sent! We will contact you shortly.',
+    error: 'Failed to send. Please try again or call us directly.',
+    required: 'Required field'
+  }
+};
+
+const t = texts[lang];
+---
+
+<div class="contact-form-wrapper">
+  <h2>{t.title}</h2>
+  <p class="subtitle">{t.subtitle}</p>
+
+  <form class="contact-form" id="contactForm" data-lang={lang}>
+    <div class="form-group">
+      <label for="name">{t.name} <span class="required">*</span></label>
+      <input type="text" id="name" name="name" required placeholder={t.namePlaceholder} aria-required="true">
+      <span class="error-msg" data-for="name">{t.required}</span>
+    </div>
+    <div class="form-group">
+      <label for="phone">{t.phone} <span class="required">*</span></label>
+      <input type="tel" id="phone" name="phone" required placeholder={t.phonePlaceholder} aria-required="true">
+      <span class="error-msg" data-for="phone">{t.required}</span>
+    </div>
+    <div class="form-group">
+      <label for="cargo">{t.cargo}</label>
+      <textarea id="cargo" name="cargo" rows="4" placeholder={t.cargoPlaceholder}></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+      <span class="btn-text">{t.submit}</span>
+      <span class="btn-loading" style="display: none;">{t.sending}</span>
+    </button>
+    <div id="formStatus" class="form-status" style="display: none;"></div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn?.querySelector('.btn-text');
+    const btnLoading = submitBtn?.querySelector('.btn-loading');
+    const statusEl = document.getElementById('formStatus');
+
+    if (!form) return;
+
+    // Получаем переводы для текущего языка
+    const lang = form.dataset.lang || 'ru';
+    const translations = {
+      ru: {
+        success: 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.',
+        error: 'Ошибка отправки. Попробуйте еще раз или позвоните нам напрямую.',
+        required: 'Обязательное поле'
+      },
+      en: {
+        success: 'Request sent! We will contact you shortly.',
+        error: 'Failed to send. Please try again or call us directly.',
+        required: 'Required field'
+      }
+    };
+    const t = translations[lang];
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Валидация
+      const name = form.querySelector('#name');
+      const phone = form.querySelector('#phone');
+      let valid = true;
+
+      [name, phone].forEach(input => {
+        const errorEl = form.querySelector(`[data-for="${input.id}"]`);
+        if (input.required && !input.value.trim()) {
+          input.classList.add('invalid');
+          if (errorEl) errorEl.style.display = 'block';
+          valid = false;
+        } else {
+          input.classList.remove('invalid');
+          if (errorEl) errorEl.style.display = 'none';
+        }
+      });
+
+      if (!valid) return;
+
+      // Собираем данные
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // UI loading
+      submitBtn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnLoading) btnLoading.style.display = 'inline';
+      if (statusEl) {
+        statusEl.style.display = 'none';
+        statusEl.className = 'form-status';
+      }
+
+      try {
+        // Отправляем через Telegram Bot API
+        // В GitHub Actions токен доступен как переменная окружения
+        // Для локального теста можно использовать fallback на Telegram Web App
+        const botToken = import.meta.env.TELEGRAM_BOT_TOKEN;
+
+        if (!botToken) {
+          // Фоллбэк: формируем ссылку для Telegram Web App (откроет чат с ботом)
+          const chatId = '665964983';
+          const message = `📋 Новая заявка с сайта:\n\n👤 Имя: ${data.name}\n📞 Телефон: ${data.phone}\n📦 Груз: ${data.cargo || 'не указан'}`;
+          const tgUrl = `https://t.me/share/url?url=&text=${encodeURIComponent(message)}`;
+
+          // Открываем в новой вкладке для ручной отправки
+          window.open(tgUrl, '_blank');
+
+          if (statusEl) {
+            statusEl.textContent = t.success;
+            statusEl.className = 'form-status success';
+            statusEl.style.display = 'block';
+          }
+          form.reset();
+          return;
+        }
+
+        // Если токен есть — отправляем через Bot API
+        const chatId = '665964983';
+        const message = `📋 Новая заявка с сайта:\n\n👤 Имя: ${data.name}\n📞 Телефон: ${data.phone}\n📦 Груз: ${data.cargo || 'не указан'}`;
+
+        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: 'HTML'
+          })
+        });
+
+        if (!response.ok) throw new Error('Telegram API error');
+
+        if (statusEl) {
+          statusEl.textContent = t.success;
+          statusEl.className = 'form-status success';
+          statusEl.style.display = 'block';
+        }
+        form.reset();
+      } catch (err) {
+        if (statusEl) {
+          statusEl.textContent = t.error;
+          statusEl.className = 'form-status error';
+          statusEl.style.display = 'block';
+        }
+      } finally {
+        submitBtn.disabled = false;
+        if (btnText) btnText.style.display = 'inline';
+        if (btnLoading) btnLoading.style.display = 'none';
+      }
+    });
+
+    // Скрываем ошибки при вводе
+    form.querySelectorAll('input, textarea').forEach(input => {
+      input.addEventListener('input', () => {
+        input.classList.remove('invalid');
+        const errorEl = form.querySelector(`[data-for="${input.id}"]`);
+        if (errorEl) errorEl.style.display = 'none';
+      });
+    });
+  });
+</script>
+
+<style>
+  .contact-form-wrapper {
+    background: var(--bg-light);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-form-wrapper h2 {
+    color: var(--primary-color);
+    font-size: 1.75rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .required {
+    color: var(--accent-color);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(19, 64, 116, 0.1);
+  }
+
+  .form-group input.invalid,
+  .form-group textarea.invalid {
+    border-color: #d9534f;
+  }
+
+  .form-group input.invalid:focus,
+  .form-group textarea.invalid:focus {
+    box-shadow: 0 0 0 4px rgba(217, 83, 79, 0.1);
+  }
+
+  .error-msg {
+    display: none;
+    color: #d9534f;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    position: absolute;
+  }
+
+  .btn-block {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background-color: #d17534;
+  }
+
+  .btn-primary:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .form-status {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+    animation: slideIn 0.3s ease;
+  }
+
+  .form-status.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+  }
+
+  .form-status.error {
+    background: #fdeaea;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .contact-form-wrapper {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

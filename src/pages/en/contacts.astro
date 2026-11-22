@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+---
+
+<Layout title="Contacts — Kokshe Trans Logistics" lang="en">
+    <div class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We are always open for cooperation and ready to answer your questions</p>
+        </div>
+    </div>
+
+    <section class="contacts-section">
+        <div class="container">
+            <div class="contacts-grid">
+                <div class="contact-info">
+                    <h2>Our Contacts</h2>
+                    <p class="subtitle">Contact our specialists in any convenient way.</p>
+
+                    <div class="info-item">
+                        <h3>Address</h3>
+                        <p>Republic of Kazakhstan, Kokshetau</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>Phones</h3>
+                        <p><a href="tel:+77162000000">+7 (7162) 00-00-00</a></p>
+                        <p><a href="tel:+77010000000">+7 (701) 000-00-00</a></p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@kokshetrans.kz">info@kokshetrans.kz</a></p>
+                    </div>
+
+                    <div class="info-item">
+                        <h3>Working Hours</h3>
+                        <p>Mon - Fri: 09:00 – 18:00<br>Sat - Sun: Closed</p>
+                    </div>
+                </div>
+
+                <ContactForm lang="en" />
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+    }
+
+    .page-header h1 {
+        margin: 0 0 1rem 0;
+        font-size: 2.5rem;
+    }
+
+    .page-header p {
+        margin: 0;
+        opacity: 0.8;
+        font-size: 1.1rem;
+    }
+
+    .contacts-section {
+        padding: 5rem 0;
+    }
+
+    .contacts-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .contact-info h2 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    .subtitle {
+        color: #666;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .info-item {
+        margin-bottom: 2rem;
+    }
+
+    .info-item h3 {
+        color: var(--secondary-color);
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-item p, .info-item a {
+        color: #444;
+        margin: 0;
+        font-size: 1.05rem;
+        text-decoration: none;
+    }
+
+    .info-item a:hover {
+        color: var(--accent-color);
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .contacts-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+    }
+</style>

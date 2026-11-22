@@ -6,7 +6,7 @@ import Layout from '../../layouts/Layout.astro';
     <section class="hero">
         <div class="container hero-content">
             <h1>Reliable Logistics & Freight Services in Kazakhstan and Worldwide</h1>
-            <p>Comprehensive transport and logistics solutions: rail freight, trucking, warehousing, and customs clearance.</p>
+            <p>Comprehensive transport and logistics solutions: rail freight, trucking, warehousing, and customs clearance. We ensure safe and efficient delivery of your cargo with competitive rates.</p>
             <div class="hero-buttons">
                 <a href="/kokshetrans.kz/en/services" class="btn btn-primary">Our Services</a>
                 <a href="/kokshetrans.kz/en/contacts" class="btn btn-outline">Contact Us</a>
@@ -74,5 +74,14 @@ import Layout from '../../layouts/Layout.astro';
 
     .btn-outline:hover {
         background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+        }
     }
 </style>

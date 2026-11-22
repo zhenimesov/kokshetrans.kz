@@ -5,33 +5,30 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="Кокше Транс Логистик — Транспортно-логистическая компания" lang="ru">
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-content">
+        <div class="hero-content container">
             <h1>Надежная логистика и грузоперевозки</h1>
-            <p>Комплексные транспортно-логистические решения для вашего бизнеса по Казахстану, СНГ и всему миру. Ж/д перевозки, автотранспорт и складская логистика.</p>
+            <p>Комплексные транспортно-логистические решения для вашего бизнеса по Казахстану, СНГ и всему миру. Ж/д и автоперевозки, контейнеры, терминальные услуги и таможенное оформление.</p>
             <div class="hero-buttons">
-                <a href="/kokshetrans.kz/ru/services" class="btn btn-primary">Наши услуги</a>
-                <a href="/kokshetrans.kz/ru/contacts" class="btn btn-outline">Рассчитать стоимость</a>
+                <a href="/kokshetrans.kz/ru/contacts" class="btn btn-primary">Оставить заявку</a>
+                <a href="/kokshetrans.kz/ru/services" class="btn btn-outline">Наши услуги</a>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Почему выбирают нас</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Опыт и надежность</h3>
-                    <p>Многолетний опыт работы в сфере международных и внутренних грузоперевозок.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>География перевозок</h3>
-                    <p>Широкая сеть маршрутов по Казахстану, странам СНГ, Европы и Азии.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Безопасность грузов</h3>
-                    <p>Полный контроль на всех этапах транспортировки и страхование.</p>
-                </div>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <h3>10+</h3>
+                <p>Лет опыта</p>
+            </div>
+            <div class="stat-card">
+                <h3>5000+</h3>
+                <p>Доставленных грузов</p>
+            </div>
+            <div class="stat-card">
+                <h3>100%</h3>
+                <p>Надёжность</p>
             </div>
         </div>
     </section>
@@ -52,9 +49,30 @@ import Layout from '../../layouts/Layout.astro';
                     <a href="/kokshetrans.kz/ru/services" class="link">Подробнее &rarr;</a>
                 </div>
                 <div class="service-box">
-                    <h3>Складская логистика</h3>
-                    <p>Услуги ответственного хранения, обработки и консолидации грузов.</p>
+                    <h3>Контейнерные перевозки</h3>
+                    <p>Отправка 20- и 40-футовых контейнеров по Казахстану, в Китай, Россию, Турцию и Узбекистан.</p>
                     <a href="/kokshetrans.kz/ru/services" class="link">Подробнее &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Опыт и надежность</h3>
+                    <p>Многолетний опыт работы в сфере международных и внутренних грузоперевозок.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>География перевозок</h3>
+                    <p>Широкая сеть маршрутов по Казахстану, странам СНГ, Европы и Азии.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Безопасность грузов</h3>
+                    <p>Полный контроль на всех этапах транспортировки и страхование.</p>
                 </div>
             </div>
         </div>
@@ -99,7 +117,7 @@ import Layout from '../../layouts/Layout.astro';
     .btn {
         display: inline-block;
         padding: 0.875rem 2rem;
-        border-radius: 4px;
+        border-radius: 8px;
         text-decoration: none;
         font-weight: 600;
         transition: background-color 0.2s, transform 0.2s;
@@ -123,6 +141,38 @@ import Layout from '../../layouts/Layout.astro';
         background-color: rgba(255, 255, 255, 0.1);
     }
 
+    /* Stats */
+    .stats {
+        background-color: var(--white);
+        padding: 4rem 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .stat-card {
+        background: var(--bg-light);
+        padding: 2rem;
+        border-radius: 8px;
+    }
+
+    .stat-card h3 {
+        color: var(--primary-color);
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 800;
+    }
+
+    .stat-card p {
+        color: #666;
+        margin: 0.5rem 0 0 0;
+        font-weight: 500;
+    }
+
     /* Section Common */
     section {
         padding: 5rem 0;
@@ -136,38 +186,11 @@ import Layout from '../../layouts/Layout.astro';
         font-weight: 700;
     }
 
-    /* Features */
-    .features {
+    /* Services Overview */
+    .services-overview {
         background-color: var(--bg-light);
     }
 
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .feature-card {
-        background: white;
-        padding: 2.5rem 2rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        border-top: 4px solid var(--secondary-color);
-    }
-
-    .feature-card h3 {
-        color: var(--primary-color);
-        margin-top: 0;
-        font-size: 1.25rem;
-    }
-
-    .feature-card p {
-        color: #666;
-        margin-bottom: 0;
-        line-height: 1.5;
-    }
-
-    /* Services Overview */
     .services-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -206,6 +229,36 @@ import Layout from '../../layouts/Layout.astro';
 
     .link:hover {
         text-decoration: underline;
+    }
+
+    /* Features */
+    .features {
+        background-color: var(--white);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .feature-card {
+        background: var(--bg-light);
+        padding: 2.5rem 2rem;
+        border-radius: 8px;
+        border-top: 4px solid var(--secondary-color);
+    }
+
+    .feature-card h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+        font-size: 1.25rem;
+    }
+
+    .feature-card p {
+        color: #666;
+        margin-bottom: 0;
+        line-height: 1.5;
     }
 
     @media (max-width: 768px) {

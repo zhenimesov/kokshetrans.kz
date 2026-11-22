@@ -218,9 +218,28 @@ const { title, lang = 'ru' } = Astro.props;
     .mobile-menu-btn.active .hamburger::before { transform: rotate(45deg) translate(5px, 6px); }
     .mobile-menu-btn.active .hamburger::after { transform: rotate(-45deg) translate(5px, -6px); }
 
-    /* Main */
+    /* Улучшение читаемости текста */
+    p {
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    h1, h2, h3, h4 {
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+
     .site-main {
         flex: 1;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+    }
+
+    /* Дополнительные стили для заголовков */
+    .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--primary-color);
     }
 
     /* Footer */

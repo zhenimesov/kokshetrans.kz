@@ -84,13 +84,14 @@ import Layout from '../../layouts/Layout.astro';
         font-size: 2rem;
         margin-top: 0;
         margin-bottom: 1.5rem;
+        text-align: center; /* Центрируем заголовок */
     }
 
     .about-text p {
         color: #555;
-        line-height: 1.7;
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
+        line-height: 1.8; /* Больше «воздуха» между строками */
+        font-size: 1.15rem;
+        margin-bottom: 1.5rem;
     }
 
     .about-stats {
@@ -121,8 +122,8 @@ import Layout from '../../layouts/Layout.astro';
 
     .mission-vision {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
     }
 
     .card {
@@ -136,12 +137,14 @@ import Layout from '../../layouts/Layout.astro';
     .card h3 {
         color: var(--primary-color);
         margin-top: 0;
+        margin-bottom: 1rem;
         font-size: 1.5rem;
+        text-align: center; /* Центрируем заголовки карточек */
     }
 
     .card p {
         color: #555;
-        line-height: 1.6;
+        line-height: 1.7;
         margin-bottom: 0;
     }
 
