@@ -3,274 +3,835 @@ import Layout from '../../layouts/Layout.astro';
 import Publications from '../../components/Publications.astro';
 ---
 
-<Layout title="Kokshe Trans Logistics — Logistics and Freight Forwarding in Kazakhstan" lang="en">
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Reliable Logistics & Freight Services in Kazakhstan and Worldwide</h1>
-            <p>Comprehensive transport and logistics solutions: rail freight, trucking, container shipping, and customs clearance. We ensure safe and efficient delivery of your cargo with competitive rates.</p>
-            <div class="hero-buttons">
-                <a href="/kokshetrans.kz/en/contacts" class="btn btn-primary">Request a Quote</a>
-                <a href="/kokshetrans.kz/en/services" class="btn btn-outline">Our Services</a>
-            </div>
-        </div>
-    </section>
+<Layout title="Kokshe Trans Logistics — Reliable Logistics & Freight Transportation in Kazakhstan" lang="en">
+	<!-- Hero Section -->
+	<section class="hero" aria-labelledby="hero-title">
+		<div class="hero-bg" aria-hidden="true"></div>
+		<div class="container hero-content">
+			<div class="hero-badge">
+				<span class="badge-dot" aria-hidden="true"></span>
+				<span>Kokshe Trans Logistics LLP — Licensed Railway Carrier</span>
+			</div>
+			<h1 id="hero-title" class="hero-title">Reliable Logistics for Your Business</h1>
+			<p class="hero-description">Comprehensive transport and logistics solutions: railway and road freight, container shipping, customs clearance, and warehousing services across Kazakhstan, CIS, and international routes.</p>
+			<div class="hero-actions">
+				<a href="/kokshetrans.kz/en/contacts" class="btn btn-primary btn-lg">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+					Get a Quote
+				</a>
+				<a href="/kokshetrans.kz/en/services" class="btn btn-outline btn-lg">
+					Our Services
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+				</a>
+			</div>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container stats-grid">
-            <div class="stat-card">
-                <h3>10+</h3>
-                <p>Years of Experience</p>
-            </div>
-            <div class="stat-card">
-                <h3>5000+</h3>
-                <p>Delivered Shipments</p>
-            </div>
-            <div class="stat-card">
-                <h3>100%</h3>
-                <p>Reliability</p>
-            </div>
-        </div>
-    </section>
+			<div class="hero-stats" aria-label="Key Company Metrics">
+				<div class="stat-item">
+					<span class="stat-value" data-count="10">10+</span>
+					<span class="stat-label">Years of Experience</span>
+				</div>
+				<div class="stat-divider" aria-hidden="true"></div>
+				<div class="stat-item">
+					<span class="stat-value" data-count="5000">5000+</span>
+					<span class="stat-label">Delivered Shipments</span>
+				</div>
+				<div class="stat-divider" aria-hidden="true"></div>
+				<div class="stat-item">
+					<span class="stat-value" data-count="15">15+</span>
+					<span class="stat-label">Destination Countries</span>
+				</div>
+				<div class="stat-divider" aria-hidden="true"></div>
+				<div class="stat-item">
+					<span class="stat-value" data-count="100">100%</span>
+					<span class="stat-label">Cargo Insurance</span>
+				</div>
+			</div>
+		</div>
 
-    <!-- Services Overview -->
-    <section class="services-overview">
-        <div class="container">
-            <h2 class="section-title">Key Services</h2>
-            <div class="services-grid">
-                <div class="service-box">
-                    <h3>Rail Freight</h3>
-                    <p>Transportation of cargo by rail wagons and containers at optimal rates.</p>
-                    <a href="/kokshetrans.kz/en/services" class="link">Learn more &rarr;</a>
-                </div>
-                <div class="service-box">
-                    <h3>Trucking</h3>
-                    <p>Delivery of LTL and FTL cargo by road transport.</p>
-                    <a href="/kokshetrans.kz/en/services" class="link">Learn more &rarr;</a>
-                </div>
-                <div class="service-box">
-                    <h3>Container Shipping</h3>
-                    <p>Shipping of 20- and 40-foot containers across Kazakhstan, China, Russia, Turkey, and Uzbekistan.</p>
-                    <a href="/kokshetrans.kz/en/services" class="link">Learn more &rarr;</a>
-                </div>
-            </div>
-        </div>
-    </section>
+		<div class="hero-scroll" aria-hidden="true">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+		</div>
+	</section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Us</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Experience & Reliability</h3>
-                    <p>Years of experience in international and domestic freight forwarding.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Wide Geography</h3>
-                    <p>Extensive route network across Kazakhstan, CIS, Europe, and Asia.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Cargo Safety</h3>
-                    <p>Full control at all stages of transportation and insurance coverage.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+	<!-- Services Section -->
+	<section class="services" id="services" aria-labelledby="services-title">
+		<div class="container">
+			<header class="section-header">
+				<h2 id="services-title" class="section-title">Our Services</h2>
+				<p class="section-subtitle">Full-cycle logistics services — from route planning to final delivery to the consignee</p>
+				<a href="/kokshetrans.kz/en/services" class="section-link">All Services <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+			</header>
 
-    <!-- Publications Section -->
-    <Publications lang="en" />
+			<div class="services-grid">
+				<article class="service-card" id="rail">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 15h18M3 9h18M5 3v18M19 3v18"/><line x1="3" y1="3" x2="21" y2="21"/></svg>
+					</div>
+					<h3 class="service-title">Rail Freight</h3>
+					<p class="service-description">Cargo transportation by rolling stock and containers at optimal rates. Full support: from application to cargo release at destination station.</p>
+					<ul class="service-features">
+						<li>Wagon shipments (covered, half-wagons, flatcars)</li>
+						<li>Container shipping 20/40 ft</li>
+						<li>Dangerous goods transport</li>
+						<li>Real-time cargo tracking</li>
+					</ul>
+					<a href="/kokshetrans.kz/en/services#rail" class="service-link">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+
+				<article class="service-card" id="truck">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3.28c0-.51-.32-.95-.78-1.07l-6.1-.61a2.5 2.5 0 0 1-1.64-.9L8.6 8.6a2.5 2.5 0 0 1-.9-1.64L3 3.78C2.88 3.32 2.44 3 2 3H2v2h0"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+					</div>
+					<h3 class="service-title">Road Freight</h3>
+					<p class="service-description">LTL and FTL cargo delivery by road transport. Own fleet and verified partners for any route.</p>
+					<ul class="service-features">
+						<li>LTL (consolidated) and FTL (full truckload)</li>
+						<li>Curtain-side, refrigerated, flatbed trucks</li>
+						<li>Door-to-door delivery</li>
+						<li>Express delivery across Kazakhstan</li>
+					</ul>
+					<a href="/kokshetrans.kz/en/services#truck" class="service-link">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+
+				<article class="service-card" id="container">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M10 3v18M14 3v18"/></svg>
+					</div>
+					<h3 class="service-title">Container Shipping</h3>
+					<p class="service-description">20-ft and 40-ft container shipping across Kazakhstan, China, Russia, Turkey, Uzbekistan and other countries. Multimodal delivery schemes.</p>
+					<ul class="service-features">
+						<li>Standard (DC), High Cube (HC), Open Top (OT) containers</li>
+						<li>Refrigerated containers</li>
+						<li>Sea + rail + road (multimodal)</li>
+						<li>Domestic shipping within RK</li>
+					</ul>
+					<a href="/kokshetrans.kz/en/services#container" class="service-link">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+
+				<article class="service-card" id="customs">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12V7H5V5H2v14h3v-2h14v2h3v-7z"/></svg>
+					</div>
+					<h3 class="service-title">Customs Clearance</h3>
+					<p class="service-description">Full customs support: document preparation, duty calculation, customs control processing, obtaining permits.</p>
+					<ul class="service-features">
+						<li>Customs declarations (DT, transit)</li>
+						<li>Duty and tax calculation & payment</li>
+						<li>Certificates, licenses, expert opinions</li>
+						<li>Customs broker representation</li>
+					</ul>
+					<a href="/kokshetrans.kz/en/services#customs" class="service-link">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+
+				<article class="service-card" id="warehouse">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 13V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v7"/><path d="M3 13h18"/><path d="M5 13v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V13"/></svg>
+					</div>
+					<h3 class="service-title">Warehousing Services</h3>
+					<p class="service-description">Responsible storage, order fulfillment, repacking, labeling, and distribution logistics at own terminals.</p>
+					<ul class="service-features">
+						<li>Responsible storage (Class A/B)</li>
+						<li>Order picking & assembly</li>
+						<li>Cross-docking & transshipment</li>
+						<li>WMS inventory & stocktaking</li>
+					</ul>
+					<a href="/kokshetrans.kz/en/services#warehouse" class="service-link">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+
+				<article class="service-card" id="insurance">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+					</div>
+					<h3 class="service-title">Cargo Insurance</h3>
+					<p class="service-description">Full cargo insurance throughout the entire route. Working with leading insurers, fast claims settlement.</p>
+					<ul class="service-features">
+						<li>"All Risks" and "Named Perils" policies</li>
+						<li>International & domestic insurance</li>
+						<li>Policy issuance in 15 minutes</li>
+						<li>24/7 claims support</li>
+					</ul>
+					<a href="/kokshetrans.kz/en/services#insurance" class="service-link">Learn More <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- Advantages Section -->
+	<section class="advantages" aria-labelledby="advantages-title">
+		<div class="container">
+			<header class="section-header">
+				<h2 id="advantages-title" class="section-title">Why Choose Us</h2>
+				<p class="section-subtitle">We don't just transport cargo — we build long-term logistics partnerships</p>
+			</header>
+
+			<div class="advantages-grid">
+				<div class="advantage-card">
+					<div class="advantage-icon" aria-hidden="true">
+						<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+					</div>
+					<h3>Reliability & Safety</h3>
+					<p>100% insurance on every shipment, real-time GPS tracking, own fleet and verified partners. Your cargo is safe at every kilometer.</p>
+				</div>
+
+				<div class="advantage-card">
+					<div class="advantage-icon" aria-hidden="true">
+						<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2v20"/></svg>
+					</div>
+					<h3>Wide Geography</h3>
+					<p>Routes across Kazakhstan, CIS, China, Europe, Turkey, Iran and Asia. Multimodal schemes: rail + road + sea for optimal cost and transit times.</p>
+				</div>
+
+				<div class="advantage-card">
+					<div class="advantage-icon" aria-hidden="true">
+						<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+					</div>
+					<h3>Personal Manager</h3>
+					<p>Each client gets a dedicated logistics expert who knows your business, monitors every shipment 24/7, and resolves any issues without bureaucracy. One contact — all solutions.</p>
+				</div>
+
+				<div class="advantage-card">
+					<div class="advantage-icon" aria-hidden="true">
+						<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+					</div>
+					<h3>Transparent Pricing</h3>
+					<p>Clear rates with no hidden fees. Cost calculation in 30 minutes. Single contract, single invoice, full reporting in client portal. You pay only for results.</p>
+				</div>
+
+				<div class="advantage-card">
+					<div class="advantage-icon" aria-hidden="true">
+						<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+					</div>
+					<h3>Digital Client Portal</h3>
+					<p>Real-time cargo tracking, shipment history, documents, acts, invoices — all in one place. 24/7 access from any device. API for ERP integration.</p>
+				</div>
+
+				<div class="advantage-card">
+					<div class="advantage-icon" aria-hidden="true">
+						<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+					</div>
+					<h3>Documentation Support</h3>
+					<p>Complete preparation of accompanying documents: CIM/SMGS, CMR, waybills, quality certificates, veterinary/phytosanitary certificates. Minimum involvement from you.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="cta" aria-labelledby="cta-title">
+		<div class="container">
+			<div class="cta-content">
+				<div class="cta-text">
+					<h2 id="cta-title" class="cta-title">Ready to Start Cooperation?</h2>
+					<p class="cta-description">Get a cost and transit time calculation within 30 minutes. Your personal manager will contact you within 15 minutes after submitting the request.</p>
+					<ul class="cta-benefits">
+						<li>Free cost calculation</li>
+						<li>Logistics expert consultation</li>
+						<li>Individual terms for regular clients</li>
+					</ul>
+				</div>
+				<div class="cta-form-wrapper">
+					<form class="cta-form" action="/kokshetrans.kz/en/contacts" method="GET">
+						<div class="form-row">
+							<div class="form-group">
+								<label for="cta-name">Your Name <span aria-hidden="true">*</span></label>
+								<input type="text" id="cta-name" name="name" required placeholder="John Doe" autocomplete="name">
+							</div>
+							<div class="form-group">
+								<label for="cta-phone">Phone <span aria-hidden="true">*</span></label>
+								<input type="tel" id="cta-phone" name="phone" required placeholder="+7 (___) ___-__-__" autocomplete="tel">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="cta-cargo">What are you shipping?</label>
+							<select id="cta-cargo" name="cargo">
+								<option value="">Select cargo type</option>
+								<option value="general">General Cargo (FTL)</option>
+								<option value="ltt">Consolidated Cargo (LTL)</option>
+								<option value="container">Container</option>
+								<option value="dangerous">Dangerous Goods</option>
+								<option value="oversized">Oversized Cargo</option>
+								<option value="other">Other</option>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary btn-lg btn-block">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+							Get Calculation
+						</button>
+						<p class="form-note">By clicking the button, you agree to <a href="#">personal data processing</a></p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Publications Section -->
+	<Publications lang="en" />
 </Layout>
 
 <style>
-    /* Hero Styles */
-    .hero {
-        background: linear-gradient(rgba(11, 37, 69, 0.85), rgba(19, 64, 116, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-        color: white;
-        padding: 8rem 0;
-        text-align: center;
-    }
+	/* Hero Section */
+	.hero {
+		position: relative;
+		background: var(--primary-color);
+		color: var(--bg-white);
+		padding: 6rem 0 4rem;
+		overflow: hidden;
+	}
 
-    .hero-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(ellipse 80% 50% at 50% 0%, rgba(226, 135, 67, 0.15) 0%, transparent 70%),
+			url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+		opacity: 0.12;
+	}
 
-    .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-        font-weight: 800;
-        line-height: 1.2;
-    }
+	.hero-bg::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgba(11, 37, 69, 0.9) 0%, rgba(11, 37, 69, 1) 100%);
+	}
 
-    .hero p {
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
-        opacity: 0.9;
-        line-height: 1.6;
-    }
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		max-width: 800px;
+	}
 
-    .hero-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+	.hero-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: rgba(255,255,255,0.08);
+		border: 1px solid rgba(255,255,255,0.15);
+		border-radius: 100px;
+		padding: 0.5rem 1rem 0.5rem 0.75rem;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		color: rgba(255,255,255,0.9);
+		margin-bottom: 1.5rem;
+		backdrop-filter: blur(10px);
+	}
 
-    .btn {
-        display: inline-block;
-        padding: 0.875rem 2rem;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: background-color 0.2s, transform 0.2s;
-    }
+	.badge-dot {
+		width: 8px;
+		height: 8px;
+		background: var(--accent-color);
+		border-radius: 50%;
+		animation: pulse 2s infinite;
+		flex-shrink: 0;
+	}
 
-    .btn-primary {
-        background-color: var(--accent-color);
-        color: white;
-    }
+	@keyframes pulse {
+		0%, 100% { opacity: 1; transform: scale(1); }
+		50% { opacity: 0.6; transform: scale(1.1); }
+	}
 
-    .btn-primary:hover {
-        background-color: #d17534;
-    }
+	.hero-title {
+		font-size: clamp(2.5rem, 5vw, 3.75rem);
+		font-weight: 800;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+		margin: 0 0 1.5rem;
+		color: var(--bg-white);
+	}
 
-    .btn-outline {
-        border: 2px solid white;
-        color: white;
-    }
+	.hero-description {
+		font-size: clamp(1.125rem, 2vw, 1.25rem);
+		line-height: 1.7;
+		color: rgba(255,255,255,0.8);
+		margin: 0 0 2rem;
+		max-width: 650px;
+	}
 
-    .btn-outline:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
+	.hero-actions {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		margin-bottom: 3rem;
+	}
 
-    /* Stats */
-    .stats {
-        background-color: var(--white);
-        padding: 4rem 0;
-    }
+	.hero-stats {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255,255,255,0.1);
+	}
 
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        text-align: center;
-    }
+	.stat-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		min-width: 100px;
+	}
 
-    .stat-card {
-        background: var(--bg-light);
-        padding: 2rem;
-        border-radius: 8px;
-    }
+	.stat-value {
+		font-size: clamp(2rem, 3vw, 2.5rem);
+		font-weight: 800;
+		color: var(--accent-color);
+		line-height: 1;
+		letter-spacing: -0.02em;
+	}
 
-    .stat-card h3 {
-        color: var(--primary-color);
-        margin: 0;
-        font-size: 2.5rem;
-        font-weight: 800;
-    }
+	.stat-label {
+		font-size: 0.8125rem;
+		color: rgba(255,255,255,0.6);
+		font-weight: 500;
+	}
 
-    .stat-card p {
-        color: #666;
-        margin: 0.5rem 0 0 0;
-        font-weight: 500;
-    }
+	.stat-divider {
+		width: 1px;
+		height: 50px;
+		background: linear-gradient(180deg, transparent, rgba(255,255,255,0.2), transparent);
+	}
 
-    /* Section Common */
-    section {
-        padding: 5rem 0;
-    }
+	.hero-scroll {
+		position: absolute;
+		bottom: 2rem;
+		left: 50%;
+		transform: translateX(-50%);
+		color: rgba(255,255,255,0.5);
+		animation: bounce 2s infinite;
+		cursor: pointer;
+		transition: color var(--transition-base);
+	}
 
-    .section-title {
-        text-align: center;
-        font-size: 2.25rem;
-        margin-bottom: 3rem;
-        color: var(--primary-color);
-        font-weight: 700;
-    }
+	.hero-scroll:hover { color: var(--accent-color); }
 
-    /* Services Overview */
-    .services-overview {
-        background-color: var(--bg-light);
-    }
+	@keyframes bounce {
+		0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+		40% { transform: translateX(-50%) translateY(-8px); }
+		60% { transform: translateX(-50%) translateY(-4px); }
+	}
 
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
+	/* Section Common */
+	section { padding: 5rem 0; }
 
-    .service-box {
-        border: 1px solid #e1e4e8;
-        padding: 2.5rem 2rem;
-        border-radius: 8px;
-        transition: transform 0.2s, box-shadow 0.2s;
-        background: white;
-    }
+	.section-header {
+		text-align: center;
+		margin-bottom: 3.5rem;
+	}
 
-    .service-box:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    }
+	.section-title {
+		font-size: clamp(2rem, 3.5vw, 2.5rem);
+		font-weight: 800;
+		color: var(--primary-color);
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.02em;
+	}
 
-    .service-box h3 {
-        color: var(--primary-color);
-        margin-top: 0;
-    }
+	.section-subtitle {
+		font-size: 1.125rem;
+		color: var(--text-muted);
+		margin: 0 auto 1.5rem;
+		max-width: 600px;
+		line-height: 1.6;
+	}
 
-    .service-box p {
-        color: #666;
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
-    }
+	.section-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--accent-color);
+		font-weight: 600;
+		text-decoration: none;
+		font-size: 0.9375rem;
+		transition: gap var(--transition-fast), color var(--transition-fast);
+	}
 
-    .link {
-        color: var(--secondary-color);
-        text-decoration: none;
-        font-weight: 600;
-    }
+	.section-link:hover { gap: 0.75rem; color: var(--accent-dark); }
 
-    .link:hover {
-        text-decoration: underline;
-    }
+	/* Services Grid */
+	.services { background: var(--bg-white); }
 
-    /* Features */
-    .features {
-        background-color: var(--white);
-    }
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+		gap: 1.5rem;
+	}
 
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
+	.service-card {
+		background: var(--bg-white);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-lg);
+		padding: 2.5rem 2rem;
+		transition: all var(--transition-base);
+		position: relative;
+		overflow: hidden;
+	}
 
-    .feature-card {
-        background: var(--bg-light);
-        padding: 2.5rem 2rem;
-        border-radius: 8px;
-        border-top: 4px solid var(--secondary-color);
-    }
+	.service-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform var(--transition-base);
+	}
 
-    .feature-card h3 {
-        color: var(--primary-color);
-        margin-top: 0;
-        font-size: 1.25rem;
-    }
+	.service-card:hover {
+		border-color: var(--accent-color);
+		box-shadow: var(--shadow-xl);
+		transform: translateY(-4px);
+	}
 
-    .feature-card p {
-        color: #666;
-        margin-bottom: 0;
-        line-height: 1.5;
-    }
+	.service-card:hover::before { transform: scaleX(1); }
 
-    @media (max-width: 768px) {
-        .hero h1 {
-            font-size: 2.25rem;
-        }
-        .hero-buttons {
-            flex-direction: column;
-        }
-    }
+	.service-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 56px;
+		height: 56px;
+		background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+		border-radius: var(--radius-md);
+		color: var(--bg-white);
+		margin-bottom: 1.25rem;
+		transition: background var(--transition-base);
+	}
+
+	.service-card:hover .service-icon { background: linear-gradient(135deg, var(--accent-color), var(--accent-dark)); }
+
+	.service-title {
+		font-size: 1.375rem;
+		font-weight: 700;
+		color: var(--primary-color);
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.01em;
+	}
+
+	.service-description {
+		color: var(--text-muted);
+		line-height: 1.7;
+		margin: 0 0 1.25rem;
+		font-size: 0.9375rem;
+	}
+
+	.service-features {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem;
+	}
+
+	.service-features li {
+		position: relative;
+		padding-left: 1.5rem;
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+		color: var(--text-color);
+		line-height: 1.5;
+	}
+
+	.service-features li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.55rem;
+		width: 6px;
+		height: 6px;
+		background: var(--accent-color);
+		border-radius: 50%;
+	}
+
+	.service-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--primary-color);
+		font-weight: 600;
+		text-decoration: none;
+		font-size: 0.9375rem;
+		transition: color var(--transition-fast), gap var(--transition-fast);
+	}
+
+	.service-link:hover { color: var(--accent-color); gap: 0.75rem; }
+
+	/* Advantages */
+	.advantages { background: var(--bg-light); }
+
+	.advantages-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.advantage-card {
+		background: var(--bg-white);
+		border-radius: var(--radius-lg);
+		padding: 2.5rem 2rem;
+		border: 1px solid var(--border-light);
+		transition: all var(--transition-base);
+	}
+
+	.advantage-card:hover {
+		border-color: var(--accent-color);
+		box-shadow: var(--shadow-lg);
+		transform: translateY(-4px);
+	}
+
+	.advantage-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 52px;
+		height: 52px;
+		background: var(--bg-light);
+		border-radius: var(--radius-md);
+		color: var(--accent-color);
+		margin-bottom: 1.25rem;
+		transition: all var(--transition-base);
+	}
+
+	.advantage-card:hover .advantage-icon {
+		background: var(--accent-color);
+		color: var(--bg-white);
+	}
+
+	.advantage-card h3 {
+		font-size: 1.125rem;
+		font-weight: 700;
+		color: var(--primary-color);
+		margin: 0 0 0.75rem;
+	}
+
+	.advantage-card p {
+		color: var(--text-muted);
+		line-height: 1.7;
+		margin: 0;
+		font-size: 0.9375rem;
+	}
+
+	/* CTA Section */
+	.cta {
+		background: var(--primary-color);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.cta::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(ellipse 60% 60% at 80% 20%, rgba(226, 135, 67, 0.15) 0%, transparent 60%),
+			radial-gradient(ellipse 50% 50% at 10% 80%, rgba(19, 64, 116, 0.3) 0%, transparent 50%);
+		pointer-events: none;
+	}
+
+	.cta-content {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: start;
+	}
+
+	.cta-title {
+		font-size: clamp(2rem, 3.5vw, 2.5rem);
+		font-weight: 800;
+		color: var(--bg-white);
+		margin: 0 0 1rem;
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+	}
+
+	.cta-description {
+		font-size: 1.125rem;
+		color: rgba(255,255,255,0.8);
+		line-height: 1.7;
+		margin: 0 0 1.5rem;
+	}
+
+	.cta-benefits {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.cta-benefits li {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		color: rgba(255,255,255,0.9);
+		font-size: 0.9375rem;
+		position: relative;
+		padding-left: 1.5rem;
+	}
+
+	.cta-benefits li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		width: 20px;
+		height: 20px;
+		background: var(--accent-color);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.cta-benefits li::after {
+		content: '✓';
+		position: absolute;
+		left: 0;
+		width: 20px;
+		height: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--bg-white);
+		font-size: 12px;
+		font-weight: bold;
+	}
+
+	.cta-form-wrapper {
+		background: rgba(255,255,255,0.03);
+		border: 1px solid rgba(255,255,255,0.1);
+		border-radius: var(--radius-xl);
+		padding: 2.5rem;
+		backdrop-filter: blur(20px);
+	}
+
+	.cta-form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+	.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+	.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+	.form-group label {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: rgba(255,255,255,0.9);
+	}
+
+	.form-group label span { color: var(--accent-color); }
+
+	.form-group input,
+	.form-group select {
+		padding: 0.875rem 1rem;
+		border: 1px solid rgba(255,255,255,0.2);
+		border-radius: var(--radius-md);
+		background: rgba(255,255,255,0.05);
+		color: var(--bg-white);
+		font-size: 1rem;
+		font-family: inherit;
+		transition: all var(--transition-fast);
+	}
+
+	.form-group input::placeholder { color: rgba(255,255,255,0.4); }
+
+	.form-group input:focus,
+	.form-group select:focus {
+		outline: none;
+		border-color: var(--accent-color);
+		background: rgba(255,255,255,0.1);
+		box-shadow: 0 0 0 3px rgba(226, 135, 67, 0.2);
+	}
+
+	.form-group select { cursor: pointer; }
+
+	.btn-block { width: 100%; }
+
+	.form-note {
+		font-size: 0.75rem;
+		color: rgba(255,255,255,0.5);
+		text-align: center;
+		margin: 0.5rem 0 0;
+	}
+
+	.form-note a { color: var(--accent-light); text-decoration: underline; }
+
+	/* Mobile */
+	@media (max-width: 1024px) {
+		.cta-content { grid-template-columns: 1fr; gap: 2rem; }
+		.cta-form-wrapper { padding: 2rem; }
+	}
+
+	@media (max-width: 768px) {
+		.hero { padding: 5rem 0 3rem; }
+		.hero-stats { gap: 1rem; }
+		.stat-item { min-width: 80px; }
+		.stat-divider { display: none; }
+
+		.services-grid { grid-template-columns: 1fr; }
+		.advantages-grid { grid-template-columns: 1fr; }
+
+		.form-row { grid-template-columns: 1fr; }
+		.cta-form-wrapper { padding: 1.5rem; }
+	}
+
+	@media (max-width: 480px) {
+		.hero-actions { flex-direction: column; }
+		.hero-actions .btn { width: 100%; justify-content: center; }
+
+		.services-grid { gap: 1rem; }
+		.service-card { padding: 1.5rem; }
+
+		.advantage-card { padding: 1.5rem; }
+	}
 </style>
+
+<script>
+	// Animate counter numbers on scroll
+	const statValues = document.querySelectorAll('.stat-value[data-count]');
+
+	const animateCounter = (el) => {
+		const target = parseInt(el.dataset.count);
+		const suffix = el.textContent.includes('+') ? '+' : '';
+		const duration = 2000;
+		const start = performance.now();
+
+		const update = (now) => {
+			const progress = Math.min((now - start) / duration, 1);
+			const eased = 1 - Math.pow(1 - progress, 3);
+			const current = Math.floor(target * eased);
+			el.textContent = current + suffix;
+			if (progress < 1) requestAnimationFrame(update);
+		};
+
+		requestAnimationFrame(update);
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				animateCounter(entry.target);
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.5 });
+
+	statValues.forEach(el => observer.observe(el));
+
+	// Phone input mask
+	const phoneInput = document.getElementById('cta-phone');
+	if (phoneInput) {
+		phoneInput.addEventListener('input', (e) => {
+			let value = e.target.value.replace(/\D/g, '');
+			if (!value.startsWith('7')) value = '7' + value;
+			if (value.length > 11) value = value.slice(0, 11);
+
+			let formatted = '+';
+			if (value.length > 1) formatted += value[0] + ' (' + value.slice(1, 4);
+			if (value.length >= 5) formatted += ') ' + value.slice(4, 7);
+			if (value.length >= 8) formatted += '-' + value.slice(7, 9);
+			if (value.length >= 10) formatted += '-' + value.slice(9, 11);
+
+			e.target.value = formatted;
+		});
+	}
+</script>

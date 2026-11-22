@@ -3,164 +3,493 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Услуги — Кокше Транс Логистик" lang="ru">
-    <div class="page-header">
-        <div class="container">
-            <h1>Наши услуги</h1>
-            <p>Комплексные транспортно-логистические решения для вашего бизнеса</p>
-        </div>
-    </div>
+	<!-- Page Header -->
+	<header class="page-header" aria-labelledby="page-title">
+		<div class="container">
+			<nav class="breadcrumb" aria-label="Breadcrumb">
+				<ol>
+					<li><a href="/kokshetrans.kz/ru">Главная</a></li>
+					<li aria-current="page">Услуги</li>
+				</ol>
+			</nav>
+			<h1 id="page-title" class="page-title">Наши услуги</h1>
+			<p class="page-subtitle">Комплексные транспортно-логистические решения для вашего бизнеса — от планирования маршрута до окончательной доставки груза получателю</p>
+		</div>
+	</header>
 
-    <section class="services-content">
-        <div class="container">
-            <div class="service-item">
-                <h2>Железнодорожные перевозки</h2>
-                <p>Организация перевозок грузов железнодорожным транспортом по территории Республики Казахстан, странам СНГ и транзитом. Предоставление вагонов и контейнеров, экспедирование и отслеживание грузов в пути.</p>
-                <ul>
-                    <li>Перевозка в крытых вагонах, полувагонах и на платформах</li>
-                    <li>Контейнерные перевозки (20- и 40-футовые контейнеры)</li>
-                    <li>Разработка и согласование схем погрузки</li>
-                </ul>
-            </div>
+	<!-- Services Grid -->
+	<section class="services-list" aria-labelledby="services-title">
+		<div class="container">
+			<div class="services-grid">
+				<article class="service-card" id="rail">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 15h18M3 9h18M5 3v18M19 3v18"/><line x1="3" y1="3" x2="21" y2="21"/></svg>
+					</div>
+					<h2 class="service-title">Железнодорожные перевозки</h2>
+					<p class="service-description">Организация перевозок грузов железнодорожным транспортом по территории Республики Казахстан, странам СНГ и транзитом. Предоставление вагонов и контейнеров, экспедирование и отслеживание грузов в пути.</p>
+					<ul class="service-features">
+						<li>Перевозка в крытых вагонах, полувагонах и на платформах</li>
+						<li>Контейнерные перевозки (20- и 40-футовые контейнеры)</li>
+						<li>Разработка и согласование схем погрузки</li>
+						<li>Организация транзитных перевозок через границу</li>
+						<li>Экспедирование грузов и документальное сопровождение</li>
+						<li>Отслеживание местоположения груза в реальном времени</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Рассчитать стоимость <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
 
-            <div class="service-item">
-                <h2>Автомобильные перевозки</h2>
-                <p>Гибкие и оперативные автоперевозки генеральных и сборных грузов "от двери до двери". В нашем распоряжении современный автопарк различной грузоподъемности.</p>
-                <ul>
-                    <li>Международные и внутренние автоперевозки</li>
-                    <li>Доставка сборных грузов (LTL) и полных фур (FTL)</li>
-                    <li>Перевозка негабаритных и тяжеловесных грузов</li>
-                </ul>
-            </div>
+				<article class="service-card" id="truck">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3.28c0-.51-.32-.95-.78-1.07l-6.1-.61a2.5 2.5 0 0 1-1.64-.9L8.6 8.6a2.5 2.5 0 0 1-.9-1.64L3 3.78C2.88 3.32 2.44 3 2 3H2v2h0"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+					</div>
+					<h2 class="service-title">Автомобильные перевозки</h2>
+					<p class="service-description">Гибкие и оперативные автоперевозки генеральных и сборных грузов "от двери до двери". В нашем распоряжении современный автопарк различной грузоподъемности.</p>
+					<ul class="service-features">
+						<li>Международные и внутренние автоперевозки</li>
+						<li>Доставка сборных грузов (LTL) и полных фур (FTL)</li>
+						<li>Перевозка негабаритных и тяжеловесных грузов</li>
+						<li>Тентовые, рефрижераторные, бортовые фуры</li>
+						<li>Экспресс-доставка по Казахстану</li>
+						<li>Страхование груза на всём маршруте</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Рассчитать стоимость <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
 
-            <div class="service-item">
-                <h2>Контейнерные перевозки</h2>
-                <p>Перевозка грузов в 20- и 40-футовых контейнерах железнодорожным и автомобильным транспортом, включая международные направления.</p>
-                <ul>
-                    <li>Контейнерные поезда по маршрутам Китай — Казахстан — Европа</li>
-                    <li>Отправка одиночных контейнеров и групповых сборок</li>
-                    <li>Контроль местонахождения груза на всём маршруте</li>
-                </ul>
-            </div>
+				<article class="service-card" id="container">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M10 3v18M14 3v18"/></svg>
+					</div>
+					<h2 class="service-title">Контейнерные перевозки</h2>
+					<p class="service-description">Перевозка грузов в 20- и 40-футовых контейнерах железнодорожным и автомобильным транспортом, включая международные направления.</p>
+					<ul class="service-features">
+						<li>Контейнерные поезда по маршрутам Китай — Казахстан — Европа</li>
+						<li>Отправка одиночных контейнеров и групповых сборок</li>
+						<li>Контроль местонахождения груза на всём маршруте</li>
+						<li>Стандартные (DC), High Cube (HC), Open Top (OT) контейнеры</li>
+						<li>Рефрижераторные контейнеры для термочувствительных грузов</li>
+						<li>Мультимодальные схемы: море + ж/д + авто</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Рассчитать стоимость <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
 
-            <div class="service-item">
-                <h2>Таможенное оформление</h2>
-                <p>Полный комплекс услуг по сопровождению внешнеэкономической деятельности (ВЭД) и таможенной очистке грузов.</p>
-                <ul>
-                    <li>Подготовка и проверка товаросопроводительных документов</li>
-                    <li>Декларирование грузов</li>
-                    <li>Консультирование по вопросам ВЭД</li>
-                </ul>
-            </div>
+				<article class="service-card" id="customs">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12V7H5V5H2v14h3v-2h14v2h3v-7z"/></svg>
+					</div>
+					<h2 class="service-title">Таможенное оформление</h2>
+					<p class="service-description">Полный комплекс услуг по сопровождению внешнеэкономической деятельности (ВЭД) и таможенной очистке грузов.</p>
+					<ul class="service-features">
+						<li>Подготовка и проверка товаросопроводительных документов</li>
+						<li>Декларирование грузов (ДТ, транзит)</li>
+						<li>Расчет и уплата таможенных пошлин и налогов</li>
+						<li>Получение сертификатов, лицензий, экспертиз</li>
+						<li>Представительство интересов клиента в таможне</li>
+						<li>Консультирование по вопросам ВЭД и таможенного права</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Рассчитать стоимость <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
 
-            <div class="service-item">
-                <h2>Различный подвижной состав</h2>
-                <p>Предоставление различных типов подвижного состава для перевозки грузов любой сложности.</p>
-                <ul>
-                    <li>Зерновозы, полувагоны, контейнеровозы</li>
-                    <li>Автотранспорт различной грузоподъемности</li>
-                    <li>Подбор оптимального состава под ваш груз</li>
-                </ul>
-            </div>
+				<article class="service-card" id="warehouse">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 13V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v7"/><path d="M3 13h18"/><path d="M5 13v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V13"/></svg>
+					</div>
+					<h2 class="service-title">Складские услуги</h2>
+					<p class="service-description">Оказание полного спектра терминальных и складских услуг на станциях и в портах. Ответственное хранение, комплектация заказов, переупаковка.</p>
+					<ul class="service-features">
+						<li>Ответственное хранение (Класс А/Б)</li>
+						<li>Комплектация и сборка заказов</li>
+						<li>Кросс-докинг и перевалка</li>
+						<li>Маркировка, переупаковка, обвязка</li>
+						<li>WMS-учет и инвентаризация</li>
+						<li>Распределительная логистика (Last Mile)</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Рассчитать стоимость <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
 
-            <div class="service-item">
-                <h2>Терминальные услуги</h2>
-                <p>Оказание полного спектра терминальных услуг на станциях и в портах.</p>
-                <ul>
-                    <li>Прием и выдача грузов</li>
-                    <li>Обработка и хранение на терминалах</li>
-                    <li>Оперативное взаимодействие с терминальными складами</li>
-                </ul>
-            </div>
+				<article class="service-card" id="insurance">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+					</div>
+					<h2 class="service-title">Страхование грузов</h2>
+					<p class="service-description">Полное страхование груза на всём маршруте следования. Работа с ведущими страховыми компаниями, быстрое урегулирование убытков.</p>
+					<ul class="service-features">
+						<li>Полисы "All Risks" и "Named Perils"</li>
+						<li>Международное и внутреннее страхование</li>
+						<li>Оформление полиса за 15 минут</li>
+						<li>Круглосуточная поддержка при страховых случаях</li>
+						<li>Страхование ответственности перевозчика</li>
+						<li>Индивидуальные условия для постоянных клиентов</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Рассчитать стоимость <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+			</div>
+		</div>
+	</section>
 
-            <div class="service-item">
-                <h2>Перевозки по Кокшетау и Байсерке</h2>
-                <p>Местные перевозки грузов в пределах г. Кокшетау, р.п. Байсерке и окрестностей.</p>
-                <ul>
-                    <li>Доставка грузов «от двери до двери»</li>
-                    <li>Оперативная подача автотранспорта</li>
-                    <li>Перевозка мелких и крупных партий</li>
-                </ul>
-            </div>
+	<!-- Additional Services -->
+	<section class="additional-services" aria-labelledby="additional-title">
+		<div class="container">
+			<header class="section-header">
+				<h2 id="additional-title" class="section-title">Дополнительные направления</h2>
+				<p class="section-subtitle">Специализированные услуги для конкретных потребностей вашего бизнеса</p>
+			</header>
 
-            <div class="service-item">
-                <h2>Международные маршруты (Китай, Россия, Турция, Узбекистан, Афганистан)</h2>
-                <p>Организация перевозок по направлениям: Китай — РФ/Европа/Узбекистан, Казахстан — Китай/Россия/Турция/Афганистан и др.</p>
-                <ul>
-                    <li>Ж/Д и автоперевозки из Китая и в Китай</li>
-                    <li>Эвакуация контейнеров в Китай и Турцию</li>
-                    <li>Маршрутизация по странам СНГ и ближнему зарубежью</li>
-                </ul>
-            </div>
+			<div class="services-grid">
+				<article class="service-card" id="rolling-stock">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="16" r="2"/><circle cx="16" cy="16" r="2"/></svg>
+					</div>
+					<h2 class="service-title">Различный подвижной состав</h2>
+					<p class="service-description">Предоставление различных типов подвижного состава для перевозки грузов любой сложности под ваши задачи.</p>
+					<ul class="service-features">
+						<li>Зерновозы, полувагоны, контейнеровозы</li>
+						<li>Автотранспорт различной грузоподъемности (от 1.5 до 20 т)</li>
+						<li>Спецтехника для негабаритных грузов</li>
+						<li>Подбор оптимального состава под ваш груз</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Узнать детали <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
 
-            <div class="service-item">
-                <h2>Выдача контейнеров</h2>
-                <p>Оперативная выдача и прием контейнеров на станциях и терминалах.</p>
-                <ul>
-                    <li>Оформление документов на выдачу</li>
-                    <li>Контроль состояния контейнера</li>
-                    <li>Сопровождение на всех этапах</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+				<article class="service-card" id="terminal">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 13V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v7"/><path d="M3 13h18"/><path d="M5 13v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V13"/></svg>
+					</div>
+					<h2 class="service-title">Терминальные услуги</h2>
+					<p class="service-description">Оказание полного спектра терминальных услуг на станциях и в портах. Оперативная обработка грузов.</p>
+					<ul class="service-features">
+						<li>Прием и выдача грузов</li>
+						<li>Обработка и хранение на терминалах</li>
+						<li>Оперативное взаимодействие с терминальными складами</li>
+						<li>Взвешивание, осмотр, фотофиксация</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Узнать детали <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+
+				<article class="service-card" id="local">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/></svg>
+					</div>
+					<h2 class="service-title">Местные перевозки (Кокшетау, Байсерке)</h2>
+					<p class="service-description">Местные перевозки грузов в пределах г. Кокшетау, р.п. Байсерке и окрестностей.</p>
+					<ul class="service-features">
+						<li>Доставка грузов «от двери до двери»</li>
+						<li>Оперативная подача автотранспорта</li>
+						<li>Перевозка мелких и крупных партий</li>
+						<li>Грузоподъемность до 20 тонн</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Узнать детали <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+
+				<article class="service-card" id="international">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+					</div>
+					<h2 class="service-title">Международные маршруты</h2>
+					<p class="service-description">Организация перевозок по направлениям: Китай — РФ/Европа/Узбекистан, Казахстан — Китай/Россия/Турция/Афганистан и др.</p>
+					<ul class="service-features">
+						<li>Ж/Д и автоперевозки из Китая и в Китай</li>
+						<li>Эвакуация контейнеров в Китай и Турцию</li>
+						<li>Маршрутизация по странам СНГ и ближнему зарубежью</li>
+						<li>Мультимодальные схемы через порты</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Узнать детали <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+
+				<article class="service-card" id="container-ops">
+					<div class="service-icon" aria-hidden="true">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+					</div>
+					<h2 class="service-title">Выдача и прием контейнеров</h2>
+					<p class="service-description">Оперативная выдача и прием контейнеров на станциях и терминалах с полным документальным сопровождением.</p>
+					<ul class="service-features">
+						<li>Оформление документов на выдачу/прием</li>
+						<li>Контроль состояния контейнера (OS/DR)</li>
+						<li>Сопровождение на всех этапах операции</li>
+						<li>Взаимодействие с линиями и терминалами</li>
+					</ul>
+					<a href="/kokshetrans.kz/ru/contacts" class="service-link">Узнать детали <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="cta-section" aria-labelledby="cta-title">
+		<div class="container">
+			<div class="cta-content">
+				<h2 id="cta-title" class="cta-title">Не нашли нужную услугу?</h2>
+				<p class="cta-description">Мы подберем индивидуальное логистическое решение под ваши задачи. Оставьте заявку — персональный менеджер свяжется с вами в течение 15 минут.</p>
+				<a href="/kokshetrans.kz/ru/contacts" class="btn btn-primary btn-lg">Получить консультацию</a>
+			</div>
+		</div>
+	</section>
 </Layout>
 
 <style>
-    .page-header {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 4rem 0;
-        text-align: center;
-    }
+	/* Page Header */
+	.page-header {
+		background: var(--primary-color);
+		color: var(--bg-white);
+		padding: 4rem 0;
+		position: relative;
+		overflow: hidden;
+	}
 
-    .page-header h1 {
-        margin: 0 0 1rem 0;
-        font-size: 2.5rem;
-    }
+	.page-header::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(ellipse 60% 50% at 50% 0%, rgba(226, 135, 67, 0.15) 0%, transparent 70%),
+			url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+		opacity: 0.1;
+	}
 
-    .page-header p {
-        margin: 0;
-        opacity: 0.8;
-        font-size: 1.1rem;
-    }
+	.breadcrumb {
+		margin-bottom: 1.5rem;
+	}
 
-    .services-content {
-        padding: 4rem 0;
-    }
+	.breadcrumb ol {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		font-size: 0.9375rem;
+		flex-wrap: wrap;
+	}
 
-    .service-item {
-        background: var(--bg-light);
-        padding: 3rem;
-        border-radius: 8px;
-        margin-bottom: 2.5rem;
-        border-left: 5px solid var(--accent-color);
-    }
+	.breadcrumb a {
+		color: rgba(255,255,255,0.7);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
 
-    .service-item h2 {
-        color: var(--primary-color);
-        margin-top: 0;
-        margin-bottom: 1.5rem;
-        font-size: 1.75rem;
-        text-align: center; /* Центрируем заголовок */
-    }
+	.breadcrumb a:hover { color: var(--accent-color); }
 
-    .service-item p {
-        color: #555;
-        line-height: 1.7; /* Улучшаем интервал */
-        font-size: 1.1rem;
-    }
+	.breadcrumb li::after {
+		content: '/';
+		color: rgba(255,255,255,0.4);
+		margin-left: 0.5rem;
+	}
 
-    .service-item ul {
-        margin-top: 1.5rem;
-        padding-left: 1.2rem;
-        color: #444;
-        max-width: 600px; /* Ограничиваем ширину списка */
-        margin-left: auto;
-        margin-right: auto;
-    }
+	.breadcrumb li:last-child::after { display: none; }
 
-    .service-item li {
-        margin-bottom: 0.75rem;
-        line-height: 1.6;
-    }
+	.breadcrumb li[aria-current="page"] {
+		color: var(--bg-white);
+		font-weight: 500;
+	}
+
+	.page-title {
+		font-size: clamp(2rem, 4vw, 3rem);
+		font-weight: 800;
+		margin: 0 0 1rem;
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+	}
+
+	.page-subtitle {
+		font-size: 1.125rem;
+		color: rgba(255,255,255,0.8);
+		margin: 0;
+		max-width: 700px;
+		line-height: 1.7;
+	}
+
+	/* Services List */
+	.services-list { padding: 5rem 0; background: var(--bg-white); }
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.service-card {
+		background: var(--bg-white);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-lg);
+		padding: 2.5rem 2rem;
+		transition: all var(--transition-base);
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.service-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform var(--transition-base);
+	}
+
+	.service-card:hover {
+		border-color: var(--accent-color);
+		box-shadow: var(--shadow-xl);
+		transform: translateY(-4px);
+	}
+
+	.service-card:hover::before { transform: scaleX(1); }
+
+	.service-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 56px;
+		height: 56px;
+		background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+		border-radius: var(--radius-md);
+		color: var(--bg-white);
+		margin-bottom: 1.25rem;
+		transition: background var(--transition-base);
+		flex-shrink: 0;
+	}
+
+	.service-card:hover .service-icon { background: linear-gradient(135deg, var(--accent-color), var(--accent-dark)); }
+
+	.service-title {
+		font-size: 1.375rem;
+		font-weight: 700;
+		color: var(--primary-color);
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.01em;
+	}
+
+	.service-description {
+		color: var(--text-muted);
+		line-height: 1.7;
+		margin: 0 0 1.25rem;
+		font-size: 0.9375rem;
+		flex: 1;
+	}
+
+	.service-features {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem;
+	}
+
+	.service-features li {
+		position: relative;
+		padding-left: 1.5rem;
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+		color: var(--text-color);
+		line-height: 1.5;
+	}
+
+	.service-features li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.55rem;
+		width: 6px;
+		height: 6px;
+		background: var(--accent-color);
+		border-radius: 50%;
+	}
+
+	.service-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--primary-color);
+		font-weight: 600;
+		text-decoration: none;
+		font-size: 0.9375rem;
+		transition: color var(--transition-fast), gap var(--transition-fast);
+		margin-top: auto;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border-light);
+	}
+
+	.service-link:hover { color: var(--accent-color); gap: 0.75rem; }
+
+	/* Additional Services */
+	.additional-services { background: var(--bg-light); padding: 5rem 0; }
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 3.5rem;
+	}
+
+	.section-title {
+		font-size: clamp(2rem, 3.5vw, 2.5rem);
+		font-weight: 800;
+		color: var(--primary-color);
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.02em;
+	}
+
+	.section-subtitle {
+		font-size: 1.125rem;
+		color: var(--text-muted);
+		margin: 0 auto 1.5rem;
+		max-width: 600px;
+		line-height: 1.6;
+	}
+
+	/* CTA Section */
+	.cta-section {
+		background: var(--primary-color);
+		padding: 4rem 0;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.cta-section::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(226, 135, 67, 0.15) 0%, transparent 60%);
+		pointer-events: none;
+	}
+
+	.cta-content {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.cta-title {
+		font-size: clamp(1.75rem, 3vw, 2.25rem);
+		font-weight: 800;
+		color: var(--bg-white);
+		margin: 0 0 1rem;
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+	}
+
+	.cta-description {
+		font-size: 1.125rem;
+		color: rgba(255,255,255,0.8);
+		line-height: 1.7;
+		margin: 0 0 2rem;
+	}
+
+	/* Mobile */
+	@media (max-width: 768px) {
+		.page-header { padding: 3rem 0; }
+		.services-list, .additional-services { padding: 3.5rem 0; }
+		.services-grid { grid-template-columns: 1fr; gap: 1rem; }
+		.service-card { padding: 1.5rem; }
+		.cta-section { padding: 3rem 0; }
+	}
+
+	@media (max-width: 480px) {
+		.page-title { font-size: 1.75rem; }
+		.service-card { padding: 1.25rem; }
+		.service-icon { width: 48px; height: 48px; }
+		.breadcrumb { font-size: 0.875rem; }
+	}
 </style>
