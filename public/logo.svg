@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120">
+  <!-- rails -->
+  <rect x="10" y="96" width="140" height="4" fill="#0b2545"/>
+  <!-- cowcatcher -->
+  <path d="M10 96 L34 70 L42 70 L22 96 Z" fill="#0b2545"/>
+  <!-- engine body -->
+  <rect x="36" y="46" width="62" height="34" fill="#0b2545"/>
+  <!-- cab -->
+  <rect x="78" y="30" width="26" height="50" fill="#0b2545"/>
+  <rect x="84" y="36" width="14" height="14" fill="#ffffff"/>
+  <!-- chimney -->
+  <path d="M44 46 L36 18 L60 18 L52 46 Z" fill="#0b2545"/>
+  <!-- wheels -->
+  <circle cx="50" cy="86" r="10" fill="#0b2545"/>
+  <circle cx="76" cy="86" r="10" fill="#0b2545"/>
+  <circle cx="102" cy="86" r="10" fill="#0b2545"/>
+  <!-- letter K -->
+  <path d="M112 18 L152 60 L126 60 L96 30 Z" fill="#e28743"/>
+  <path d="M112 96 L152 54 L126 54 L96 84 Z" fill="#e28743"/>
+</svg>

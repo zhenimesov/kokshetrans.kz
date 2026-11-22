@@ -1,13 +1,14 @@
 ---
 interface Props {
 	title: string;
+	lang?: string;
 }
 
-const { title } = Astro.props;
+const { title, lang = 'ru' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="ru">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Кокшетранс — Логистическая компания в Казахстане" />
@@ -18,20 +19,20 @@ const { title } = Astro.props;
 	<body>
 		<header class="site-header">
             <div class="container header-container">
-                <a href="/kokshetrans.kz/ru" class="logo">
-                    <span class="logo-text">КОКШЕТРАНС</span>
+                <a href={`/kokshetrans.kz/${lang}`} class="logo">
+                    <span class="logo-text">КОКШЕ</span>
                 </a>
                 <nav class="main-nav" id="mainNav">
-                    <a href="/kokshetrans.kz/ru">Главная</a>
-                    <a href="/kokshetrans.kz/ru/services">Услуги</a>
-                    <a href="/kokshetrans.kz/ru/about">О компании</a>
-                    <a href="/kokshetrans.kz/ru/contacts">Контакты</a>
+                    <a href={`/kokshetrans.kz/${lang}`}>{lang === 'en' ? 'Home' : 'Главная'}</a>
+                    <a href={`/kokshetrans.kz/${lang}/services`}>{lang === 'en' ? 'Services' : 'Услуги'}</a>
+                    <a href={`/kokshetrans.kz/${lang}/about`}>{lang === 'en' ? 'About' : 'О компании'}</a>
+                    <a href={`/kokshetrans.kz/${lang}/contacts`}>{lang === 'en' ? 'Contacts' : 'Контакты'}</a>
                 </nav>
                 <div class="header-contacts">
                     <a href="tel:+77162000000" class="phone">+7 (7162) 00-00-00</a>
                 </div>
-                <a href="/kokshetrans.kz/ru/login" class="btn btn-primary header-login">Личный кабинет</a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню">
+                <a href={`/kokshetrans.kz/${lang}/login`} class="btn btn-primary header-login">{lang === 'en' ? 'Login' : 'Личный кабинет'}</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label={lang === 'en' ? 'Open menu' : 'Открыть меню'}>
                     <span class="hamburger"></span>
                 </button>
             </div>
@@ -44,21 +45,21 @@ const { title } = Astro.props;
 		<footer class="site-footer">
             <div class="container footer-container">
                 <div class="footer-col">
-                    <h3>КОКШЕТРАНС</h3>
-                    <p>Надежные транспортно-логистические решения по Казахстану, СНГ и миру.</p>
+                    <h3>{lang === 'en' ? 'Kokshetrans' : 'КОКШЕТРАНС'}</h3>
+                    <p>{lang === 'en' ? 'Reliable transport and logistics solutions across Kazakhstan, CIS and worldwide.' : 'Надежные транспортно-логистические решения по Казахстану, СНГ и миру.'}</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Навигация</h4>
+                    <h4>{lang === 'en' ? 'Navigation' : 'Навигация'}</h4>
                     <ul>
-                        <li><a href="/kokshetrans.kz/ru">Главная</a></li>
-                        <li><a href="/kokshetrans.kz/ru/services">Услуги</a></li>
-                        <li><a href="/kokshetrans.kz/ru/about">О компании</a></li>
-                        <li><a href="/kokshetrans.kz/ru/contacts">Контакты</a></li>
+                        <li><a href={`/kokshetrans.kz/${lang}`}>{lang === 'en' ? 'Home' : 'Главная'}</a></li>
+                        <li><a href={`/kokshetrans.kz/${lang}/services`}>{lang === 'en' ? 'Services' : 'Услуги'}</a></li>
+                        <li><a href={`/kokshetrans.kz/${lang}/about`}>{lang === 'en' ? 'About' : 'О компании'}</a></li>
+                        <li><a href={`/kokshetrans.kz/${lang}/contacts`}>{lang === 'en' ? 'Contacts' : 'Контакты'}</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Контакты</h4>
-                    <p>Республика Казахстан, г. Кокшетау</p>
+                    <h4>{lang === 'en' ? 'Contacts' : 'Контакты'}</h4>
+                    <p>{lang === 'en' ? 'Republic of Kazakhstan, Kokshetau' : 'Республика Казахстан, г. Кокшетау'}</p>
                     <p>Email: info@kokshetrans.kz</p>
                     <p>Тел: +7 (7162) 00-00-00</p>
                 </div>
