@@ -6,43 +6,72 @@ import Layout from '../../layouts/Layout.astro';
     <div class="login-page">
         <div class="container">
             <div class="login-card">
-                <h1>Вход в систему</h1>
-                <p>Панель управления публикациями и новостями</p>
+                <div class="login-header">
+                    <div class="login-brand">
+                        <img src="/kokshetrans.kz/logo.svg" alt="Кокше Транс Логистик" class="login-logo">
+                        <span class="login-brand-text">Кокше Транс Логистик</span>
+                    </div>
+                    <h1>Вход в систему</h1>
+                    <p>Панель управления публикациями и новостями</p>
+                </div>
 
                 <form class="login-form" id="loginForm">
                     <div class="form-group">
                         <label for="username">Логин</label>
-                        <input type="text" id="username" required placeholder="Введите логин">
+                        <input type="text" id="username" required placeholder="Введите логин" autocomplete="username">
+                        <div class="input-icon">👤</div>
                     </div>
                     <div class="form-group">
                         <label for="password">Пароль</label>
-                        <input type="password" id="password" required placeholder="Введите пароль">
+                        <input type="password" id="password" required placeholder="Введите пароль" autocomplete="current-password">
+                        <div class="input-icon">🔒</div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Войти</button>
                     <div id="errorMsg" class="error-msg" style="display: none;">Неверный логин или пароль</div>
                 </form>
 
                 <div id="adminPanel" class="admin-panel" style="display: none;">
+                    <div class="admin-header">
+                        <div class="admin-user">
+                            <span class="admin-badge">Администратор</span>
+                        </div>
+                        <button type="button" class="btn btn-outline-dark btn-sm" id="logoutBtn">Выйти</button>
+                    </div>
+
                     <div class="success-banner">Вы успешно вошли как администратор!</div>
-                    <h2>Добавить новую публикацию</h2>
+
+                    <h2 class="admin-section-title">Создать публикацию</h2>
                     <form id="postForm" class="post-form">
                         <div class="form-group">
-                            <label for="postTitle">Заголовок публикации</label>
-                            <input type="text" id="postTitle" required placeholder="Например: Открытие нового филиала">
+                            <label for="postTitle">Заголовок публикации <span class="required">*</span></label>
+                            <input type="text" id="postTitle" required placeholder="Например: Открытие нового филиала в Кокшетау">
                         </div>
+
                         <div class="form-group">
-                            <label for="postContent">Текст публикации</label>
+                            <label for="postImage">Изображение публикации (URL)</label>
+                            <input type="url" id="postImage" placeholder="https://example.com/image.jpg">
+                            <p class="field-hint">Можно вставить ссылку на фото. Если оставить пустым — будет показан плашка без изображения.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postContent">Текст публикации <span class="required">*</span></label>
                             <textarea id="postContent" rows="6" required placeholder="Введите текст новости или статьи..."></textarea>
                         </div>
+
                         <input type="hidden" id="editIndex" value="-1">
-                        <button type="submit" class="btn btn-primary btn-block" id="submitPostBtn">Опубликовать</button>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary btn-block" id="cancelEditBtn" style="display: none;">Отменить редактирование</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="submitPostBtn">Опубликовать</button>
+                        </div>
                     </form>
-                    <div id="successPost" class="success-msg" style="display: none;">Публикация успешно добавлена!</div>
+                    <div id="successPost" class="success-msg" style="display: none;">Публикация успешно сохранена!</div>
                     <div id="errorPost" class="error-msg" style="display: none;">Ошибка при сохранении публикации.</div>
 
-                    <h2 style="margin-top: 3rem;">Все публикации</h2>
+                    <div class="admin-divider">
+                        <span>Все публикации</span>
+                    </div>
+
                     <div id="publicationsList" class="publications-list"></div>
-                    <button id="logoutBtn" class="btn btn-outline-dark btn-block" style="margin-top: 1rem;">Выйти</button>
                 </div>
             </div>
         </div>
@@ -55,7 +84,10 @@ import Layout from '../../layouts/Layout.astro';
     const errorMsg = document.getElementById('errorMsg');
     const postForm = document.getElementById('postForm');
     const successPost = document.getElementById('successPost');
+    const errorPost = document.getElementById('errorPost');
     const logoutBtn = document.getElementById('logoutBtn');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const submitPostBtn = document.getElementById('submitPostBtn');
 
     // Проверка сохраненной сессии
     if (localStorage.getItem('isAdmin') === 'true') {
@@ -64,14 +96,12 @@ import Layout from '../../layouts/Layout.astro';
     }
 
     if (loginForm) {
+        const loginBtn = document.getElementById('loginBtn');
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const user = (document.getElementById('username') as HTMLInputElement).value;
-            const pass = (document.getElementById('password') as HTMLInputElement).value;
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
 
-            // Простые демо-данные (в реальном приложении заменяются на бэкенд)
-            // Используем переменную окружения для пароля (установить в .env файле)
-            // Для демо оставляем простую проверку, но в продакшене обязательно используйте env переменные
             const DEMO_PASS = import.meta.env.DEMO_PASS || 'demo123';
 
             if (user === 'admin' && pass === DEMO_PASS) {
@@ -79,53 +109,73 @@ import Layout from '../../layouts/Layout.astro';
                 loginForm.style.display = 'none';
                 if (adminPanel) adminPanel.style.display = 'block';
                 errorMsg.style.display = 'none';
+                renderPublications();
             } else {
                 errorMsg.style.display = 'block';
+                if (loginBtn) {
+                    loginBtn.disabled = true;
+                    loginBtn.textContent = 'Ошибка...';
+                    setTimeout(() => {
+                        loginBtn.disabled = false;
+                        loginBtn.textContent = 'Войти';
+                    }, 2000);
+                }
             }
         });
     }
 
-    if (postForm) {
-        postForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const title = (document.getElementById('postTitle') as HTMLInputElement).value;
-            const content = (document.getElementById('postContent') as HTMLTextAreaElement).value;
+    let editIndex = -1;
 
-            // Имитация сохранения публикации
-            const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
-            posts.unshift({ title, content, date: new Date().toLocaleDateString() });
-            localStorage.setItem('newsPosts', JSON.stringify(posts));
-
-            successPost.style.display = 'block';
-            postForm.reset();
-            setTimeout(() => {
-                successPost.style.display = 'none';
-            }, 3000);
-        });
+    function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
 
-    let editIndex = -1;
+    function formatDate(dateStr) {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
 
     function renderPublications() {
         const list = document.getElementById('publicationsList');
         if (!list) return;
         const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
         if (posts.length === 0) {
-            list.innerHTML = '<p class="empty-posts">Публикаций пока нет.</p>';
+            list.innerHTML = `
+                <div class="empty-state">
+                    <span class="empty-icon">📭</span>
+                    <p>Публикаций пока нет. Создайте первую публикацию выше.</p>
+                </div>
+            `;
             return;
         }
+
         let html = '<div class="posts-list">';
         posts.forEach((post, index) => {
+            const imageHtml = post.image
+                ? `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" class="post-thumb" loading="lazy">`
+                : `<div class="post-thumb-placeholder">📷</div>`;
+
             html += `
                 <div class="post-item">
+                    <div class="post-media">${imageHtml}</div>
                     <div class="post-content">
-                        <strong>${escapeHtml(post.title)}</strong>
-                        <div class="post-meta">${escapeHtml(post.date)}</div>
-                        <div class="post-text">${escapeHtml(post.content)}</div>
+                        <div class="post-meta">
+                            <span class="post-date">${formatDate(post.date)}</span>
+                            <span class="post-index">#${index + 1}</span>
+                        </div>
+                        <h3 class="post-title">${escapeHtml(post.title)}</h3>
+                        <p class="post-text">${escapeHtml(post.content)}</p>
                     </div>
                     <div class="post-actions">
-                        <button type="button" class="btn btn-primary btn-sm edit-btn" data-index="${index}">Редактировать</button>
-                        <button type="button" class="btn btn-outline-dark btn-sm delete-btn" data-index="${index}">Удалить</button>
+                        <button type="button" class="btn btn-outline edit-btn" data-index="${index}">
+                            <span>✏️ Редактировать</span>
+                        </button>
+                        <button type="button" class="btn btn-danger delete-btn" data-index="${index}">
+                            <span>🗑️ Удалить</span>
+                        </button>
                     </div>
                 </div>
             `;
@@ -135,14 +185,16 @@ import Layout from '../../layouts/Layout.astro';
 
         list.querySelectorAll('.edit-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const idx = parseInt(e.target.dataset.index);
+                const idx = parseInt(e.target.closest('button').dataset.index);
                 const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
                 const post = posts[idx];
                 document.getElementById('postTitle').value = post.title;
+                document.getElementById('postImage').value = post.image || '';
                 document.getElementById('postContent').value = post.content;
                 document.getElementById('editIndex').value = idx;
                 document.getElementById('submitPostBtn').textContent = 'Обновить публикацию';
                 document.getElementById('submitPostBtn').classList.add('btn-update');
+                cancelEditBtn.style.display = 'block';
                 editIndex = idx;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -150,58 +202,84 @@ import Layout from '../../layouts/Layout.astro';
 
         list.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const idx = parseInt(e.target.dataset.index);
-                if (!confirm('Удалить эту публикацию?')) return;
+                const idx = parseInt(e.target.closest('button').dataset.index);
+                if (!confirm('Удалить эту публикацию безвозвратно?')) return;
                 const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
                 posts.splice(idx, 1);
                 localStorage.setItem('newsPosts', JSON.stringify(posts));
                 renderPublications();
+                if (editIndex === idx) {
+                    cancelEdit();
+                }
             });
+        });
+    }
+
+    function cancelEdit() {
+        editIndex = -1;
+        document.getElementById('editIndex').value = '-1';
+        document.getElementById('postTitle').value = '';
+        document.getElementById('postImage').value = '';
+        document.getElementById('postContent').value = '';
+        document.getElementById('submitPostBtn').textContent = 'Опубликовать';
+        document.getElementById('submitPostBtn').classList.remove('btn-update');
+        cancelEditBtn.style.display = 'none';
+    }
+
+    if (cancelEditBtn) {
+        cancelEditBtn.addEventListener('click', () => {
+            cancelEdit();
         });
     }
 
     if (postForm) {
         postForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const title = document.getElementById('postTitle').value;
-            const content = document.getElementById('postContent').value;
+            const title = document.getElementById('postTitle').value.trim();
+            const image = document.getElementById('postImage').value.trim();
+            const content = document.getElementById('postContent').value.trim();
             const idx = parseInt(document.getElementById('editIndex').value || '-1');
 
+            if (!title || !content) {
+                errorPost.textContent = 'Заполните все обязательные поля.';
+                errorPost.style.display = 'block';
+                successPost.style.display = 'none';
+                return;
+            }
+
             const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
+            const postData = {
+                title,
+                content,
+                image: image || undefined,
+                date: new Date().toISOString()
+            };
+
             if (idx >= 0 && idx < posts.length) {
-                posts[idx] = { title, content, date: new Date().toLocaleDateString() };
+                posts[idx] = { ...posts[idx], ...postData };
             } else {
-                posts.unshift({ title, content, date: new Date().toLocaleDateString() });
+                posts.unshift(postData);
             }
             localStorage.setItem('newsPosts', JSON.stringify(posts));
 
-            successPost.style.display = 'block';
             errorPost.style.display = 'none';
+            successPost.style.display = 'block';
             postForm.reset();
-            document.getElementById('editIndex').value = '-1';
-            document.getElementById('submitPostBtn').textContent = 'Опубликовать';
-            document.getElementById('submitPostBtn').classList.remove('btn-update');
-            editIndex = -1;
+            cancelEdit();
             renderPublications();
             setTimeout(() => {
                 successPost.style.display = 'none';
-            }, 3000);
+            }, 4000);
         });
     }
 
     if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             localStorage.removeItem('isAdmin');
             if (adminPanel) adminPanel.style.display = 'none';
             if (loginForm) loginForm.style.display = 'block';
         });
-    }
-
-    function escapeHtml(text) {
-        if (!text) return '';
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
     }
 
     // Initial render if admin panel is visible
@@ -212,63 +290,173 @@ import Layout from '../../layouts/Layout.astro';
 
 <style>
     .login-page {
-        padding: 5rem 0;
-        background-color: var(--bg-light);
-        min-height: 70vh;
+        padding: 3rem 0;
+        background: linear-gradient(135deg, var(--bg-light) 0%, #eef2f7 100%);
+        min-height: 80vh;
         display: flex;
         align-items: center;
     }
 
     .login-card {
-        max-width: 500px;
+        max-width: 700px;
         margin: 0 auto;
         background: white;
-        padding: 3rem;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+    }
+
+    .login-header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .login-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .login-logo {
+        width: 48px;
+        height: 48px;
         border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
 
-    .login-card h1 {
+    .login-brand-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .login-header h1 {
+        color: white;
+        margin: 0 0 0.5rem 0;
+        font-size: 1.75rem;
+        font-weight: 700;
+    }
+
+    .login-header > p {
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .login-form {
+        padding: 2rem;
+    }
+
+    .admin-panel {
+        padding: 2rem;
+    }
+
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--bg-light);
+    }
+
+    .admin-user {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .admin-badge {
+        background: var(--bg-light);
         color: var(--primary-color);
-        margin-top: 0;
-        font-size: 2rem;
-        text-align: center;
+        padding: 0.35rem 0.9rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
     }
 
-    .login-card > p {
-        text-align: center;
-        color: #666;
-        margin-bottom: 2rem;
+    .admin-section-title {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin: 0 0 1.5rem 0;
+        font-weight: 700;
     }
 
     .form-group {
         margin-bottom: 1.5rem;
+        position: relative;
     }
 
     .form-group label {
         display: block;
         margin-bottom: 0.5rem;
         color: var(--primary-color);
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .required {
+        color: var(--accent-color);
+        margin-left: 4px;
     }
 
     .form-group input,
     .form-group textarea {
         width: 100%;
-        padding: 0.875rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+        padding: 0.875rem 1rem;
+        border: 2px solid #e1e4e8;
+        border-radius: 8px;
         font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.2s;
+        box-sizing: border-box;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 4px rgba(19, 64, 116, 0.1);
+    }
+
+    .form-group input.invalid,
+    .form-group textarea.invalid {
+        border-color: #d9534f;
+    }
+
+    .input-icon {
+        position: absolute;
+        right: 1rem;
+        top: 2.5rem;
+        font-size: 1.2rem;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    .field-hint {
+        margin: 0.35rem 0 0 0;
+        font-size: 0.8rem;
+        color: #888;
     }
 
     .btn-block {
         width: 100%;
-        padding: 0.875rem;
+        padding: 1rem;
         border: none;
-        border-radius: 4px;
+        border-radius: 8px;
         font-weight: 600;
+        font-size: 1rem;
         cursor: pointer;
         text-align: center;
+        transition: all 0.2s;
     }
 
     .btn-primary {
@@ -276,14 +464,59 @@ import Layout from '../../layouts/Layout.astro';
         color: white;
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover:not(:disabled) {
         background-color: #d17534;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(226, 135, 67, 0.3);
+    }
+
+    .btn-primary:active:not(:disabled) {
+        transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .btn-secondary {
+        background: #f8f9fa;
+        color: var(--text-color);
+        border: 2px solid #e1e4e8;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+        background: #eef2f7;
+        border-color: var(--secondary-color);
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color);
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+    }
+
+    .btn-outline:hover {
+        background: var(--accent-color);
+        color: white;
     }
 
     .btn-outline-dark {
         background: transparent;
-        border: 1px solid var(--primary-color);
+        border: 2px solid var(--primary-color);
         color: var(--primary-color);
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.9rem;
     }
 
     .btn-outline-dark:hover {
@@ -291,34 +524,247 @@ import Layout from '../../layouts/Layout.astro';
         color: white;
     }
 
+    .btn-danger {
+        background: #fee2e2;
+        border: 2px solid #fca5a5;
+        color: #dc2626;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-danger:hover {
+        background: #fecaca;
+        border-color: #f87171;
+    }
+
+    .btn-update {
+        background-color: var(--secondary-color) !important;
+    }
+
+    .btn-update:hover {
+        background-color: #0d3360 !important;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+
     .error-msg {
-        color: #d9534f;
+        color: #dc2626;
         margin-top: 1rem;
         text-align: center;
         font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0.75rem;
+        background: #fef2f2;
+        border-radius: 6px;
+        border: 1px solid #fecaca;
     }
 
     .success-msg {
-        color: #5cb85c;
+        color: #16a34a;
         margin-top: 1rem;
         text-align: center;
         font-weight: 500;
+        padding: 0.75rem;
+        background: #f0fdf4;
+        border-radius: 6px;
+        border: 1px solid #bbf7d0;
     }
 
     .success-banner {
-        background: #e8f5e9;
+        background: linear-gradient(135deg, #e8f5e9 0%, #f0fdf4 100%);
         color: #2e7d32;
-        padding: 1rem;
-        border-radius: 4px;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
         text-align: center;
         margin-bottom: 1.5rem;
-        font-weight: 500;
+        font-weight: 600;
+        border: 1px solid #bbf7d0;
     }
 
-    .admin-panel h2 {
+    .admin-divider {
+        display: flex;
+        align-items: center;
+        margin: 2.5rem 0 1.5rem 0;
+        color: #999;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .admin-divider span {
+        background: white;
+        padding: 0 1rem;
+    }
+
+    .publications-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .post-item {
+        display: grid;
+        grid-template-columns: 140px 1fr 220px;
+        gap: 1rem;
+        align-items: start;
+        background: var(--bg-light);
+        border-radius: 10px;
+        padding: 1.25rem;
+        border: 1px solid #e1e4e8;
+        transition: all 0.2s;
+    }
+
+    .post-item:hover {
+        border-color: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    .post-media {
+        width: 140px;
+        height: 100px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: white;
+        flex-shrink: 0;
+    }
+
+    .post-thumb {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .post-thumb-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        background: #f0f3f6;
+        color: #aaa;
+    }
+
+    .post-content {
+        min-width: 0;
+    }
+
+    .post-meta {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .post-date {
+        font-size: 0.75rem;
+        color: var(--accent-color);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .post-index {
+        font-size: 0.75rem;
+        color: #999;
+        background: #eef2f7;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    .post-title {
         color: var(--primary-color);
-        font-size: 1.5rem;
-        margin-top: 0;
+        font-size: 1.1rem;
+        margin: 0 0 0.5rem 0;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .post-text {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0 0 1rem 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .post-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .edit-btn {
+        justify-content: center;
+    }
+
+    .delete-btn {
+        justify-content: center;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #888;
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        display: block;
         margin-bottom: 1rem;
+    }
+
+    .empty-state p {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .login-card {
+            margin: 0 1rem;
+        }
+
+        .login-header {
+            padding: 1.5rem;
+        }
+
+        .login-form,
+        .admin-panel {
+            padding: 1.5rem;
+        }
+
+        .post-item {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .post-media {
+            width: 100%;
+            height: 150px;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .admin-header {
+            flex-direction: column;
+            gap: 1rem;
+            align-items: stretch;
+        }
     }
 </style>
