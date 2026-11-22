@@ -133,7 +133,7 @@ const t = texts[lang];
         // PUBLIC_-переменные Astro подставляет в клиентский бандл при сборке.
         // Значение приходит из GitHub Secrets (TELEGRAM_API) через workflow.
         const botToken = import.meta.env.PUBLIC_TELEGRAM_BOT_TOKEN;
-        const chatId = '5335737211';
+        const chatId = '-5335737211';
 
         if (!botToken) {
           throw new Error('Telegram bot token is not configured');
