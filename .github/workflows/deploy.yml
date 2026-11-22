@@ -32,6 +32,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          PUBLIC_TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_API }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
