@@ -8,11 +8,13 @@ const { lang = 'ru' } = Astro.props;
 const texts = {
   ru: {
     title: 'Последние публикации',
+    subtitle: 'Новости, события и полезные материалы',
     empty: 'Публикаций пока нет.',
     viewAll: 'Все новости'
   },
   en: {
     title: 'Latest News',
+    subtitle: 'News, events and useful materials',
     empty: 'No publications yet.',
     viewAll: 'All news'
   }
@@ -24,20 +26,23 @@ const t = texts[lang];
 <section class="publications" id="publications">
   <div class="container">
     <div class="publications-header">
-      <h2 class="section-title">{t.title}</h2>
-      <a href={`/kokshetrans.kz/${lang}/news`} class="btn btn-outline">{t.viewAll} →</a>
+      <div class="header-text">
+        <h2 class="section-title">{t.title}</h2>
+        <p class="section-subtitle">{t.subtitle}</p>
+      </div>
+      <a href={`/kokshetrans.kz/${lang}/news`} class="btn btn-text-link">{t.viewAll} →</a>
     </div>
 
-    <div id="publicationsContent" class="publications-track" data-lang={lang}></div>
+    <div id="publicationsContent" class="publications-grid" data-lang={lang}></div>
   </div>
 </section>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const track = document.getElementById('publicationsContent');
-    if (!track) return;
+    const grid = document.getElementById('publicationsContent');
+    if (!grid) return;
 
-    const lang = track.dataset.lang || 'ru';
+    const lang = grid.dataset.lang || 'ru';
     const t = {
       ru: { empty: 'Публикаций пока нет.' },
       en: { empty: 'No publications yet.' }
@@ -46,11 +51,10 @@ const t = texts[lang];
     const posts = JSON.parse(localStorage.getItem('newsPosts') || '[]');
 
     if (posts.length === 0) {
-      track.innerHTML = `<p class="empty-posts">${t.empty}</p>`;
+      grid.innerHTML = `<p class="empty-posts">${t.empty}</p>`;
       return;
     }
 
-    // Show only the 3 latest posts for the front page
     const latestPosts = posts.slice(0, 3);
 
     function escapeHtml(text) {
@@ -75,154 +79,76 @@ const t = texts[lang];
       }
     }
 
-    track.innerHTML = latestPosts.map((post) => {
+    grid.innerHTML = latestPosts.map((post) => {
       const imageHtml = post.image
         ? `<div class="publication-image"><img src="${escapeHtml(post.image)}" alt="" loading="lazy"></div>`
-        : `<div class="publication-image-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-           </div>`;
+        : `<div class="publication-image-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 5 5m5-5l-2-2"/></svg></div>`;
 
       return `
-        <a href="#" class="publication-card">
-          ${imageHtml}
-          <div class="publication-card-content">
-            <h3 class="publication-title">${escapeHtml(post.title)}</h3>
-            <div class="publication-meta">
-              <span class="publication-date">${formatDate(post.date)}</span>
-              <span class="publication-views">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                ${post.views || 0}
-              </span>
+        <article class="publication-card">
+          <a href="#" class="card-link">
+            ${imageHtml}
+            <div class="card-body">
+              <span class="card-date">${formatDate(post.date)}</span>
+              <h3 class="card-title">${escapeHtml(post.title)}</h3>
+              <p class="card-excerpt">${escapeHtml(post.content)}</p>
+              <div class="card-footer">
+                <span class="read-more">Читать →</span>
+                ${post.views ? `<span class="card-views"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>${post.views}</span>` : ''}
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </article>
       `;
     }).join('');
   });
 </script>
 
 <style>
-  .publications {
-    background-color: var(--bg-white);
-    padding: 6rem 0;
-  }
-
+  .publications { padding: 6rem 0; background: #fff; }
   .publications-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 3rem;
   }
+  .section-title { color: #102B4C; font-size: 2.5rem; font-weight: 800; margin: 0; }
+  .section-subtitle { color: #8491A2; font-size: 1.125rem; margin-top: 0.5rem; }
+  .btn-text-link { color: #245B91; font-weight: 600; text-decoration: none; font-size: 1.125rem; }
 
-  .section-title {
-    margin: 0;
-    font-size: 2.25rem;
-    color: var(--primary-color);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-
-  .publications-track {
+  .publications-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
 
   .publication-card {
-    background: white;
-    border-radius: var(--radius-lg);
+    background: #F5F7FA;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
-    border: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+  .publication-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
 
-  .publication-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--accent-color);
-  }
+  .card-link { text-decoration: none; color: inherit; display: block; }
 
-  .publication-image {
-    height: 220px;
-    overflow: hidden;
-    background: var(--bg-light);
-  }
+  .publication-image { height: 240px; overflow: hidden; }
+  .publication-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .publication-card:hover .publication-image img { transform: scale(1.05); }
+  .publication-image-placeholder { height: 240px; background: #e0e4e8; display: flex; align-items: center; justify-content: center; color: #8491A2; }
 
-  .publication-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
+  .card-body { padding: 1.5rem; }
+  .card-date { color: #8491A2; font-size: 0.875rem; }
+  .card-title { color: #102B4C; font-size: 1.375rem; font-weight: 700; margin: 0.75rem 0; line-height: 1.3; }
+  .card-excerpt { color: #263548; font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-  .publication-card:hover .publication-image img {
-    transform: scale(1.08);
-  }
+  .card-footer { display: flex; justify-content: space-between; align-items: center; }
+  .read-more { color: #245B91; font-weight: 600; font-size: 0.9375rem; }
+  .card-views { display: flex; align-items: center; gap: 0.25rem; color: #8491A2; font-size: 0.875rem; }
 
-  .publication-image-placeholder {
-    height: 220px;
-    background: var(--bg-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-light);
-  }
-
-  .publication-card-content {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-  }
-
-  .publication-date {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
-  .publication-title {
-    color: var(--primary-color);
-    font-size: 1.1875rem;
-    margin: 0.75rem 0 1rem 0;
-    font-weight: 700;
-    line-height: 1.4;
-    transition: color var(--transition-fast);
-  }
-
-  .publication-card:hover .publication-title {
-    color: var(--accent-color);
-  }
-
-  .publication-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-light);
-    color: var(--text-muted);
-    font-size: 0.8125rem;
-  }
-
-  .publication-views {
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
-    font-weight: 500;
-  }
-
-  @media (max-width: 992px) {
-    .publications-track { grid-template-columns: repeat(2, 1fr); }
-  }
-
+  @media (max-width: 1024px) { .publications-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 768px) {
-    .publications-track { grid-template-columns: 1fr; }
-    .publications-header { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .publications-grid { grid-template-columns: 1fr; }
+    .publications-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
   }
 </style>
