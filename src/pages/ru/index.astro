@@ -4,6 +4,10 @@ import Publications from '../../components/Publications.astro';
 ---
 
 <Layout title="Кокше Транс Логистик — Надежная логистика и грузоперевозки в Казахстане" lang="ru">
+
+	<!-- Publications Section (Moved to Top) -->
+	<Publications lang="ru" />
+
 	<!-- Hero Section -->
 	<section class="hero" aria-labelledby="hero-title">
 		<div class="hero-bg" aria-hidden="true"></div>
@@ -46,10 +50,6 @@ import Publications from '../../components/Publications.astro';
 					<span class="stat-label">Страхование груза</span>
 				</div>
 			</div>
-		</div>
-
-		<div class="hero-scroll" aria-hidden="true">
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
 		</div>
 	</section>
 
@@ -198,9 +198,6 @@ import Publications from '../../components/Publications.astro';
 			</div>
 		</div>
 	</section>
-
-	<!-- Publications Section -->
-	<Publications lang="ru" />
 </Layout>
 
 <style>
@@ -209,7 +206,7 @@ import Publications from '../../components/Publications.astro';
 		position: relative;
 		background: var(--primary-color);
 		color: var(--bg-white);
-		padding: 8rem 0 6rem;
+		padding: 4rem 0 6rem;
 		overflow: hidden;
 	}
 
@@ -340,21 +337,6 @@ import Publications from '../../components/Publications.astro';
 		width: 1px;
 		height: 60px;
 		background: linear-gradient(180deg, transparent, rgba(255,255,255,0.2), transparent);
-	}
-
-	.hero-scroll {
-		position: absolute;
-		bottom: 2.5rem;
-		left: 50%;
-		transform: translateX(-50%);
-		color: rgba(255,255,255,0.4);
-		animation: bounce 2s infinite;
-	}
-
-	@keyframes bounce {
-		0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-		40% { transform: translateX(-50%) translateY(-10px); }
-		60% { transform: translateX(-50%) translateY(-5px); }
 	}
 
 	/* Section Common */
@@ -705,7 +687,7 @@ import Publications from '../../components/Publications.astro';
 	}
 
 	@media (max-width: 768px) {
-		.hero { padding: 6rem 0 4rem; }
+		.hero { padding: 4rem 0 3rem; }
 		.hero-stats { gap: 1.5rem; justify-content: center; }
 		.stat-divider { display: none; }
 		.stat-item { text-align: center; min-width: 140px; }

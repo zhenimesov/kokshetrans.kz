@@ -7,18 +7,14 @@ const { lang = 'ru' } = Astro.props;
 
 const texts = {
   ru: {
-    title: 'Наши публикации',
+    title: 'Последние публикации',
     empty: 'Публикаций пока нет.',
-    next: 'Следующая',
-    prev: 'Предыдущая',
-    viewAll: 'Смотреть все'
+    viewAll: 'Все новости'
   },
   en: {
-    title: 'Our Publications',
+    title: 'Latest News',
     empty: 'No publications yet.',
-    next: 'Next',
-    prev: 'Previous',
-    viewAll: 'View all'
+    viewAll: 'All news'
   }
 };
 
@@ -29,30 +25,16 @@ const t = texts[lang];
   <div class="container">
     <div class="publications-header">
       <h2 class="section-title">{t.title}</h2>
-      <div class="publications-nav">
-        <button type="button" class="btn btn-outline nav-btn nav-prev" id="pubPrev" disabled>
-          ← {t.prev}
-        </button>
-        <button type="button" class="btn btn-outline nav-btn nav-next" id="pubNext">
-          {t.next} →
-        </button>
-      </div>
+      <a href={`/kokshetrans.kz/${lang}/news`} class="btn btn-outline">{t.viewAll} →</a>
     </div>
 
-    <div class="publications-carousel">
-      <div id="publicationsContent" class="publications-track" data-lang={lang}></div>
-    </div>
-
-    <div class="publications-dots" id="publicationsDots"></div>
+    <div id="publicationsContent" class="publications-track" data-lang={lang}></div>
   </div>
 </section>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('publicationsContent');
-    const dotsContainer = document.getElementById('publicationsDots');
-    const prevBtn = document.getElementById('pubPrev');
-    const nextBtn = document.getElementById('pubNext');
     if (!track) return;
 
     const lang = track.dataset.lang || 'ru';
@@ -65,12 +47,11 @@ const t = texts[lang];
 
     if (posts.length === 0) {
       track.innerHTML = `<p class="empty-posts">${t.empty}</p>`;
-      if (prevBtn) prevBtn.style.display = 'none';
-      if (nextBtn) nextBtn.style.display = 'none';
       return;
     }
 
-    let currentIndex = 0;
+    // Show only the 3 latest posts for the front page
+    const latestPosts = posts.slice(0, 3);
 
     function escapeHtml(text) {
       if (!text) return '';
@@ -94,139 +75,52 @@ const t = texts[lang];
       }
     }
 
-    function render() {
-      const visible = posts.slice(currentIndex, currentIndex + 3);
-      track.innerHTML = visible.map((post, i) => {
-        const isActive = i === 0;
-        const imageHtml = post.image
-          ? `<div class="publication-image"><img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" loading="lazy"></div>`
-          : `<div class="publication-image-placeholder">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-             </div>`;
+    track.innerHTML = latestPosts.map((post) => {
+      const imageHtml = post.image
+        ? `<div class="publication-image"><img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" loading="lazy"></div>`
+        : `<div class="publication-image-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+           </div>`;
 
-        return `
-          <div class="publication-card ${isActive ? 'active' : ''}">
-            ${imageHtml}
-            <div class="publication-card-content">
-              <div class="publication-date">${formatDate(post.date)}</div>
-              <h3 class="publication-title">${escapeHtml(post.title)}</h3>
-              <p class="publication-excerpt">${escapeHtml(post.content)}</p>
-            </div>
+      return `
+        <a href="#" class="publication-card">
+          ${imageHtml}
+          <div class="publication-card-content">
+            <div class="publication-date">${formatDate(post.date)}</div>
+            <h3 class="publication-title">${escapeHtml(post.title)}</h3>
+            <p class="publication-excerpt">${escapeHtml(post.content)}</p>
           </div>
-        `;
-      }).join('');
-
-      // Update dots
-      if (dotsContainer) {
-        const totalPages = Math.ceil(posts.length / 3);
-        const currentPage = Math.floor(currentIndex / 3);
-        dotsContainer.innerHTML = Array.from({ length: totalPages }).map((_, i) => `
-          <button type="button" class="dot ${i === currentPage ? 'active' : ''}" data-page="${i}"></button>
-        `).join('');
-
-        dotsContainer.querySelectorAll('.dot').forEach(dot => {
-          dot.addEventListener('click', () => {
-            currentIndex = parseInt(dot.dataset.page) * 3;
-            render();
-          });
-        });
-      }
-
-      updateButtons();
-    }
-
-    function updateButtons() {
-      if (prevBtn) prevBtn.disabled = currentIndex === 0;
-      if (nextBtn) nextBtn.disabled = currentIndex + 3 >= posts.length;
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-          currentIndex -= 3;
-          render();
-        }
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        if (currentIndex + 3 < posts.length) {
-          currentIndex += 3;
-          render();
-        }
-      });
-    }
-
-    render();
+        </a>
+      `;
+    }).join('');
   });
 </script>
 
 <style>
   .publications {
-    background-color: var(--bg-light);
-    padding: 5rem 0;
+    background-color: var(--bg-white);
+    padding: 6rem 0;
   }
 
   .publications-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
 
   .section-title {
     margin: 0;
     font-size: 2.25rem;
     color: var(--primary-color);
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
-
-  .publications-nav {
-    display: flex;
-    gap: 0.75rem;
-  }
-
-  .nav-btn {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all var(--transition-base);
-    border: 2px solid var(--primary-color);
-    background: white;
-    color: var(--primary-color);
-  }
-
-  .nav-btn:hover:not(:disabled) {
-    background: var(--primary-color);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .nav-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-    border-color: var(--border-color);
-    color: var(--text-light);
-  }
-
-  .publications-carousel {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
+    font-weight: 800;
+    letter-spacing: -0.02em;
   }
 
   .publications-track {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    transition: all var(--transition-slow);
   }
 
   .publication-card {
@@ -238,45 +132,36 @@ const t = texts[lang];
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    height: 100%;
+    text-decoration: none;
+    color: inherit;
   }
 
   .publication-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-xl);
     border-color: var(--accent-color);
   }
 
-  .publication-card.active {
-    border-color: var(--accent-color);
-  }
-
   .publication-image {
-    height: 200px;
+    height: 220px;
     overflow: hidden;
     background: var(--bg-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    flex-shrink: 0;
   }
 
   .publication-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
   }
 
   .publication-card:hover .publication-image img {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 
   .publication-image-placeholder {
-    height: 200px;
-    background: linear-gradient(135deg, var(--bg-light) 0%, #e2e8f0 100%);
+    height: 220px;
+    background: var(--bg-light);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -284,10 +169,7 @@ const t = texts[lang];
   }
 
   .publication-card-content {
-    padding: 1.75rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 1.5rem;
   }
 
   .publication-date {
@@ -297,18 +179,6 @@ const t = texts[lang];
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .publication-date::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    background: var(--accent-color);
-    border-radius: 50%;
-    flex-shrink: 0;
   }
 
   .publication-title {
@@ -317,10 +187,6 @@ const t = texts[lang];
     margin: 0 0 0.75rem 0;
     font-weight: 700;
     line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .publication-excerpt {
@@ -328,59 +194,18 @@ const t = texts[lang];
     line-height: 1.6;
     margin: 0;
     font-size: 0.9375rem;
-    flex: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  .publications-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--border-color);
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-base);
-    padding: 0;
-  }
-
-  .dot.active {
-    background: var(--accent-color);
-    width: 28px;
-    border-radius: 5px;
-  }
-
-  .dot:hover {
-    background: var(--primary-light);
-  }
-
-  .empty-posts {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 1.125rem;
-    grid-column: 1 / -1;
-    padding: 4rem 2rem;
-    background: white;
-    border-radius: var(--radius-lg);
-    border: 2px dashed var(--border-color);
+  @media (max-width: 992px) {
+    .publications-track { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 768px) {
-    .publications { padding: 3.5rem 0; }
-    .publications-header { flex-direction: column; align-items: stretch; text-align: center; }
-    .section-title { font-size: 1.75rem; }
-    .publications-nav { justify-content: center; width: 100%; }
-    .nav-btn { flex: 1; text-align: center; }
-    .publications-track { grid-template-columns: 1fr; gap: 1.5rem; }
+    .publications-track { grid-template-columns: 1fr; }
+    .publications-header { flex-direction: column; gap: 1.5rem; text-align: center; }
   }
 </style>
