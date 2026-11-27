@@ -77,7 +77,7 @@ const t = texts[lang];
 
     track.innerHTML = latestPosts.map((post) => {
       const imageHtml = post.image
-        ? `<div class="publication-image"><img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" loading="lazy"></div>`
+        ? `<div class="publication-image"><img src="${escapeHtml(post.image)}" alt="" loading="lazy"></div>`
         : `<div class="publication-image-placeholder">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
            </div>`;
@@ -86,9 +86,14 @@ const t = texts[lang];
         <a href="#" class="publication-card">
           ${imageHtml}
           <div class="publication-card-content">
-            <div class="publication-date">${formatDate(post.date)}</div>
             <h3 class="publication-title">${escapeHtml(post.title)}</h3>
-            <p class="publication-excerpt">${escapeHtml(post.content)}</p>
+            <div class="publication-meta">
+              <span class="publication-date">${formatDate(post.date)}</span>
+              <span class="publication-views">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                ${post.views || 0}
+              </span>
+            </div>
           </div>
         </a>
       `;
@@ -169,35 +174,40 @@ const t = texts[lang];
   }
 
   .publication-card-content {
-    padding: 1.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .publication-date {
-    font-size: 0.8125rem;
-    color: var(--accent-color);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
   }
 
   .publication-title {
-    color: var(--primary-color);
-    font-size: 1.25rem;
-    margin: 0 0 0.75rem 0;
-    font-weight: 700;
-    line-height: 1.4;
+    color: var(--text-color);
+    font-size: 1.125rem;
+    margin: 0.5rem 0;
+    font-weight: 600;
+    line-height: 1.3;
+    flex-grow: 1;
   }
 
-  .publication-excerpt {
+  .publication-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
     color: var(--text-muted);
-    line-height: 1.6;
-    margin: 0;
-    font-size: 0.9375rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 0.75rem;
+  }
+
+  .publication-views {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   @media (max-width: 992px) {
