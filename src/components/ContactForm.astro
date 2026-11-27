@@ -12,7 +12,7 @@ const texts = {
     name: 'Ваше имя',
     namePlaceholder: 'Иван Иванов',
     phone: 'Телефон',
-    phonePlaceholder: '+7 (___) ___-__-__',
+    phonePlaceholder: '+7 (7__) ___-__-__',
     cargo: 'Детали груза',
     cargoPlaceholder: 'Тип груза, вес, маршрут, сроки...',
     submit: 'Отправить заявку',
@@ -27,7 +27,7 @@ const texts = {
     name: 'Your Name',
     namePlaceholder: 'John Doe',
     phone: 'Phone',
-    phonePlaceholder: '+7 (___) ___-__-__',
+    phonePlaceholder: '+7 (7__) ___-__-__',
     cargo: 'Cargo Details',
     cargoPlaceholder: 'Cargo type, weight, route, timeline...',
     submit: 'Submit Request',
@@ -66,25 +66,34 @@ const t = texts[lang];
 </div>
 
 <script>
-  // Phone mask for Kazakh format: +7 (XXX) XXX-XX-XX
+  // Phone mask for Kazakh format: +7 (7XX) XXX-XX-XX
   function applyPhoneMask(input) {
     let value = input.value.replace(/\D/g, '');
-    if (!value.startsWith('7')) {
-      value = '7' + value;
+
+    // Always keep 7 at the beginning if any numbers are entered
+    if (value.length > 0) {
+      if (value[0] !== '7') {
+        value = '7' + value;
+      }
     }
-    let formatted = '+7 ';
-    if (value.length > 1) {
-      formatted += '(' + value.slice(1, 4);
+
+    let formatted = '';
+    if (value.length > 0) {
+      formatted = '+7';
+      if (value.length > 1) {
+        formatted += ' (' + value.substring(1, 4);
+      }
+      if (value.length >= 5) {
+        formatted += ') ' + value.substring(4, 7);
+      }
+      if (value.length >= 8) {
+        formatted += '-' + value.substring(7, 9);
+      }
+      if (value.length >= 10) {
+        formatted += '-' + value.substring(9, 11);
+      }
     }
-    if (value.length >= 4) {
-      formatted += ') ' + value.slice(4, 7);
-    }
-    if (value.length >= 7) {
-      formatted += '-' + value.slice(7, 9);
-    }
-    if (value.length >= 9) {
-      formatted += '-' + value.slice(9, 11);
-    }
+
     input.value = formatted;
   }
 
@@ -101,11 +110,14 @@ const t = texts[lang];
     // Phone mask
     if (phoneInput) {
       phoneInput.addEventListener('input', () => applyPhoneMask(phoneInput));
-      phoneInput.addEventListener('focus', () => {
-        if (!phoneInput.value) phoneInput.value = '+7 (';
+      phoneInput.addEventListener('keydown', (e) => {
+        // Prevent deleting +7
+        if (e.key === 'Backspace' && phoneInput.value.length <= 3) {
+          // e.preventDefault();
+        }
       });
-      phoneInput.addEventListener('blur', () => {
-        if (phoneInput.value === '+7 (') phoneInput.value = '';
+      phoneInput.addEventListener('focus', () => {
+        if (!phoneInput.value) phoneInput.value = '+7 (7';
       });
     }
 
@@ -135,7 +147,7 @@ const t = texts[lang];
 
       [name, phone].forEach(input => {
         const errorEl = form.querySelector(`[data-for="${input.id}"]`);
-        if (input.required && !input.value.trim()) {
+        if (input.required && (!input.value.trim() || (input.id === 'phone' && input.value.length < 18))) {
           input.classList.add('invalid');
           input.setAttribute('aria-invalid', 'true');
           if (errorEl) errorEl.style.display = 'block';

@@ -29,7 +29,7 @@ const { title, lang = 'ru' } = Astro.props;
 		<header class="site-header" role="banner">
 			<div class="container header-container">
 				<a href={`/kokshetrans.kz/${lang}`} class="logo" aria-label={lang === 'en' ? 'Kokshe Trans Logistics Home' : 'Кокше Транс Логистик — Главная'}>
-					<img src="/logo.svg" class="logo-mark" alt="" width="48" height="48" aria-hidden="true"/>
+					<img src="/kokshetrans.kz/logo.svg" class="logo-mark" alt="" width="48" height="48" aria-hidden="true"/>
 					<span class="logo-text">{lang === 'en' ? 'Kokshe Trans Logistics' : 'Кокше Транс Логистик'}</span>
 				</a>
 
@@ -63,7 +63,7 @@ const { title, lang = 'ru' } = Astro.props;
 			<div class="container footer-container">
 				<div class="footer-col footer-brand">
 					<a href={`/kokshetrans.kz/${lang}`} class="footer-logo" aria-label={lang === 'en' ? 'Kokshe Trans Logistics Home' : 'Кокше Транс Логистик — Главная'}>
-						<img src="/logo.svg" class="logo-mark" alt="" width="48" height="48" aria-hidden="true"/>
+						<img src="/kokshetrans.kz/logo.svg" class="logo-mark" alt="" width="48" height="48" aria-hidden="true"/>
 						<span class="logo-text">{lang === 'en' ? 'Kokshe Trans Logistics' : 'Кокше Транс Логистик'}</span>
 					</a>
 					<p class="footer-tagline">{lang === 'en' ? 'Reliable transport and logistics solutions across Kazakhstan, CIS and worldwide.' : 'Надежные транспортно-логистические решения по Казахстану, СНГ и миру.'}</p>
@@ -151,7 +151,7 @@ const { title, lang = 'ru' } = Astro.props;
 	</body>
 </html>
 
-<style>
+<style is:global>
 	:root {
 		--primary-color: #0b2545;
 		--primary-dark: #07182e;
